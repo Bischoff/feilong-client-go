@@ -15,18 +15,18 @@ import (
 type CreateGuestDisk struct {
 	Size		string	`json:"size"`
 	IsBootDisk	bool	`json:"is_boot_disk"`
-	DiskPool	string	`json:"disk_pool"`
-	Format		string	`json:"format"`
+	Format		string	`json:"format,omitempty"`
+	DiskPool	string	`json:"disk_pool,omitempty"`
 }
 
 type CreateGuestGuest struct {
 	UserId		string	`json:"userid"`
 	VCPUs		int	`json:"vcpus"`
 	Memory		int	`json:"memory"`
-	UserProfile	string	`json:"user_profile"`
-	DiskList	[]CreateGuestDisk
-	MaxCPU		int	`json:"max_cpu"`
-	MaxMem		string	`json:"max_mem"`
+	UserProfile	string	`json:"user_profile,omitempty"`
+	DiskList	[]CreateGuestDisk `json:"disk_list"`
+	MaxCPU		int	`json:"max_cpu,omitempty"`
+	MaxMem		string	`json:"max_mem,omitempty"`
 }
 
 type CreateGuestParams struct {
@@ -39,7 +39,7 @@ type CreateGuestResult struct {
 	Reason		int	`json:"rs"`
 	ErrorMsg	string	`json:"errmsg"`
 	ModuleId	int	`json:"modID"`
-	Output		[]CreateGuestDisk
+	Output		[]CreateGuestDisk `json:"output"`
 }
 
 func (c *Client) CreateGuest(params *CreateGuestParams) (*CreateGuestResult, error) {
