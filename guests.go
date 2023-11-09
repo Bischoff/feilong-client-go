@@ -26,7 +26,7 @@ type CreateGuestGuest struct {
 	UserProfile	string	`json:"user_profile"`
 	DiskList	[]CreateGuestDisk
 	MaxCPU		int	`json:"max_cpu"`
-	MaxMem		int	`json:"max_mem"`
+	MaxMem		string	`json:"max_mem"`
 }
 
 type CreateGuestParams struct {
