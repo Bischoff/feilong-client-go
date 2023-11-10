@@ -24,14 +24,13 @@ import (
 
 func main() {
         connector := os.Getenv("ZVM_CONNECTOR")
-        client, err := feilong.NewClient(&connector)
-        if err != nil {
-                fmt.Errorf("%s", err)
-        }
+
+        client := feilong.NewClient(&connector, nil)
 
         result, err := client.GetFeilongVersion()
         if err != nil {
                 fmt.Errorf("%s", err)
+                return
         }
 
         fmt.Printf("API version: %s\n", result.Output.APIVersion)

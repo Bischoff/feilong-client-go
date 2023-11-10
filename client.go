@@ -14,25 +14,31 @@ import (
 	"time"
 )
 
-const defaultHost string = "localhost:35000"
-const timeout time.Duration = 10 * time.Second
+const defaultConnector string = "localhost:35000"
+const defaultTimeout time.Duration = 60 * time.Second
 
 type Client struct {
 	Host		string
 	HTTPClient	*http.Client
 }
 
-func NewClient(connector *string) (*Client, error) {
-	c := Client{
-		HTTPClient:	&http.Client{Timeout: timeout},
-		Host:		defaultHost,
-	}
-
+func NewClient(connector *string, timeout *time.Duration) (*Client) {
+	h := defaultConnector
 	if connector != nil {
-		c.Host = *connector
+		h = *connector
 	}
 
-	return &c, nil
+	t := defaultTimeout
+	if timeout != nil {
+		t = *timeout
+	}
+
+	c := Client{
+		HTTPClient:	&http.Client{Timeout: t},
+		Host:		h,
+	}
+
+	return &c
 }
 
 // For internal use
