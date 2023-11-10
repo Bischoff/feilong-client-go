@@ -58,7 +58,7 @@ The numbers below refer to the section numbers in the Feilong documentation. "pa
  * 7.5 - Guests
    * 7.5.2 - `CreateGuest` - partial
    * 7.5.16 - `DeleteGuest` - complete
-   * 7.5.39 - `DeployGuest` - partial
+   * 7.5.39 - `DeployGuest` - complete
  * 7.9 - Files
    * 7.9.2 - `ExportFile` - complete
 

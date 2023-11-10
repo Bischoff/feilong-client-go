@@ -2,8 +2,8 @@
 
 FEATURES:
  * first skeleton for go client library
- * GetVersion (complete)
- * CreateGuest (partial)
- * DeleteGuest (complete)
- * DeployGuest (partial)
- * ExportFile (complete)
+ * GetVersion
+ * CreateGuest
+ * DeleteGuest
+ * DeployGuest
+ * ExportFile

@@ -79,9 +79,11 @@ func (c *Client) DeleteGuest(userid string) (error) {
 type DeployGuestParams struct {
 	Action		string	`json:"action"`
 	Image		string	`json:"image"`
-	TransportFiles	string	`json:"transportfiles"`
-	RemoteHost	string	`json:"remotehost"`
-	VDev		string	`json:"vdev"`
+	TransportFiles	string	`json:"transportfiles,omitempty"`
+	RemoteHost	string	`json:"remotehost,omitempty"`
+	VDev		string	`json:"vdev,omitempty"`
+	Hostname	string	`json:"hostname,omitempty"`
+	SkipDiskCopy	bool	`json:"skipdiskcopy,omitempty"`
 }
 
 func (c *Client) DeployGuest(userid string, params *DeployGuestParams) (error) {
