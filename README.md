@@ -37,6 +37,8 @@ func main() {
 }
 ```
 
+For more examples, look in directory `examples/snippets`.
+
 
 ## Completeness
 
