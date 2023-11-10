@@ -10,6 +10,7 @@ import (
 	"encoding/json"
 )
 
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#create-guest
 
 type CreateGuestDisk struct {
@@ -63,6 +64,16 @@ func (c *Client) CreateGuest(params *CreateGuestParams) (*CreateGuestResult, err
 	return &result, nil
 }
 
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#delete-guest
+
+func (c *Client) DeleteGuest(userid string) (error) {
+	_, err := c.doRequest("DELETE", "/guests/" + userid, nil)
+
+	return err
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#deploy-guest
 
 type DeployGuestParams struct {
@@ -79,8 +90,7 @@ func (c *Client) DeployGuest(userid string, params *DeployGuestParams) (error) {
 		return err
 	}
 
-	_, err = c.doRequest("POST", "/guests/{userid}/action", body)
-// replace userid ^
+	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
 
 	return err
 }

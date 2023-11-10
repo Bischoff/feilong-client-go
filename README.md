@@ -54,18 +54,14 @@ The following are not implemented yet:
 
 The numbers below refer to the section numbers in the Feilong documentation. "partial" means that only the most common attributes are supported, while "complete" means that all attributes are supported.
 
-Version
-
- * 7.2.1 - `GetVersion` - complete
-
-Guests
-
- * 7.5.2 - `CreateGuest` - partial
- * 7.5.39 - `DeployGuest` - partial
-
-Files
-
- * 7.9.2 - `ExportFile` - complete
+ * 7.2 - Version
+   * 7.2.1 - `GetVersion` - complete
+ * 7.5 - Guests
+   * 7.5.2 - `CreateGuest` - partial
+   * 7.5.16 - `DeleteGuest` - complete
+   * 7.5.39 - `DeployGuest` - partial
+ * 7.9 - Files
+   * 7.9.2 - `ExportFile` - complete
 
 
 ## License
