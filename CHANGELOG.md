@@ -6,4 +6,5 @@ FEATURES:
  * CreateGuest
  * DeleteGuest
  * DeployGuest
+ * ListImages
  * ExportFile
