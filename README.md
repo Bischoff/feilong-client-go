@@ -58,6 +58,7 @@ The numbers below refer to the section numbers in the Feilong documentation. "pa
  * 7.2 - Version
    * 7.2.1 - `GetVersion`
  * 7.5 - Guests
+   * 7.5.1 - `ListGuests`
    * 7.5.2 - `CreateGuest` - partial
    * 7.5.16 - `DeleteGuest`
    * 7.5.24 - `StartGuest`

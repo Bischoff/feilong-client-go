@@ -2,11 +2,5 @@
 
 FEATURES:
  * first skeleton for go client library
+ * first functions
  * first examples
- * new functions:
-   * GetVersion
-   * CreateGuest
-   * DeleteGuest
-   * DeployGuest
-   * ListImages
-   * ExportFile
