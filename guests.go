@@ -106,6 +106,39 @@ func (c *Client) CreateGuest(params *CreateGuestParams) (*CreateGuestResult, err
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#show-guest-definition
+
+type ShowGuestDefinitionOutput struct {
+	UserDirect	[]string `json:"user_direct,omitempty"`
+	CheckInfo	[]string `json:"check_info,omitempty"`
+}
+
+type ShowGuestDefinitionResult struct {
+	OverallRC	int	`json:"overallRC"`
+	ReturnCode	int	`json:"rc"`
+	Reason		int	`json:"rs"`
+	ErrorMsg	string	`json:"errmsg"`
+	ModuleId	int	`json:"modID"`
+	Output		ShowGuestDefinitionOutput `json:"output"`
+}
+
+func (c *Client) ShowGuestDefinition(userid string) (*ShowGuestDefinitionResult, error) {
+	var result ShowGuestDefinitionResult
+
+	body, err := c.doRequest("GET", "/guests/" + userid, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#delete-guest
 
 func (c *Client) DeleteGuest(userid string) (error) {
