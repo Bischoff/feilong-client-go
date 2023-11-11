@@ -60,6 +60,8 @@ The numbers below refer to the section numbers in the Feilong documentation. "pa
  * 7.5 - Guests
    * 7.5.2 - `CreateGuest` - partial
    * 7.5.16 - `DeleteGuest`
+   * 7.5.24 - `StartGuest`
+   * 7.5.25 - `StopGuest`
    * 7.5.39 - `DeployGuest`
  * 7.7 - Images
    * 7.7.1 - `ListImages`

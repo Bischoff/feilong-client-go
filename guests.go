@@ -74,6 +74,38 @@ func (c *Client) DeleteGuest(userid string) (error) {
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#start-guest
+
+func (c *Client) StartGuest(userid string) (error) {
+	params := simpleAction { Action: "start" }
+
+	body, err := json.Marshal(params)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
+
+	return err
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#stop-guest
+
+func (c *Client) StopGuest(userid string) (error) {
+	params := simpleAction { Action: "stop" }
+
+	body, err := json.Marshal(params)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
+
+	return err
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#deploy-guest
 
 type DeployGuestParams struct {
@@ -87,6 +119,8 @@ type DeployGuestParams struct {
 }
 
 func (c *Client) DeployGuest(userid string, params *DeployGuestParams) (error) {
+	params.Action = "deploy"
+
 	body, err := json.Marshal(params)
 	if err != nil {
 		return err
@@ -95,4 +129,10 @@ func (c *Client) DeployGuest(userid string, params *DeployGuestParams) (error) {
 	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
 
 	return err
+}
+
+// For internal use
+
+type simpleAction struct {
+	Action		string	`json:"action"`
 }
