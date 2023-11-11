@@ -43,9 +43,15 @@ func (c *Client) ListGuests() (*ListGuestsResult, error) {
 
 type CreateGuestDisk struct {
 	Size		string	`json:"size"`
-	IsBootDisk	bool	`json:"is_boot_disk"`
 	Format		string	`json:"format,omitempty"`
+	IsBootDisk	bool	`json:"is_boot_disk,omitempty"`
+	VDev 		string	`json:"vdev,omitempty"`
 	DiskPool	string	`json:"disk_pool,omitempty"`
+}
+
+type CreateDiskLoadDev struct {
+	PortName	string	`json:"portname,omitempty"`
+	LUN		string	`json:"lun,omitempty"`
 }
 
 type CreateGuestGuest struct {
@@ -53,9 +59,16 @@ type CreateGuestGuest struct {
 	VCPUs		int	`json:"vcpus"`
 	Memory		int	`json:"memory"`
 	UserProfile	string	`json:"user_profile,omitempty"`
-	DiskList	[]CreateGuestDisk `json:"disk_list"`
+	DiskList	[]CreateGuestDisk `json:"disk_list,omitempty"`
 	MaxCPU		int	`json:"max_cpu,omitempty"`
 	MaxMem		string	`json:"max_mem,omitempty"`
+	IPLFrom		string	`json:"ipl_from,omitempty"`
+	IPLParam	string	`json:"ipl_param,omitempty"`
+	IPLLoadParam	string	`json:"ipl_loadparam,omitempty"`
+	DedicateVDevs	[]string `json:"dedicate_vdevs,omitempty"`
+	LoadDev		CreateDiskLoadDev `json:"loaddev,omitempty"`
+	Account		string	`json:"account,omitempty"`
+	CommentList	[]string `json:"comment_list,omitempty"`
 }
 
 type CreateGuestParams struct {

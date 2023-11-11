@@ -42,7 +42,7 @@ For more examples, look in directory `examples/snippets`.
 
 ## Completeness
 
-The library implements [Feilong API](https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#) version 1.0.
+The library implements the [Feilong API](https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#) version 1.0.
 
 The following are not implemented yet:
 
@@ -53,21 +53,21 @@ The following are not implemented yet:
 
 ### Implemented Functions
 
-The numbers below refer to the section numbers in the Feilong documentation. "partial" means that only the most common attributes are supported.
+The numbers below refer to the section numbers in the Feilong documentation.
 
  * 7.2 - Version
-   * 7.2.1 - `GetVersion`
+   * 7.2.1 - `GetVersion()`
  * 7.5 - Guests
-   * 7.5.1 - `ListGuests`
-   * 7.5.2 - `CreateGuest` - partial
-   * 7.5.16 - `DeleteGuest`
-   * 7.5.24 - `StartGuest`
-   * 7.5.25 - `StopGuest`
-   * 7.5.39 - `DeployGuest`
+   * 7.5.1 - `ListGuests()`
+   * 7.5.2 - `CreateGuest()`
+   * 7.5.16 - `DeleteGuest()`
+   * 7.5.24 - `StartGuest()`
+   * 7.5.25 - `StopGuest()`
+   * 7.5.39 - `DeployGuest()`
  * 7.7 - Images
-   * 7.7.1 - `ListImages`
+   * 7.7.1 - `ListImages()`
  * 7.9 - Files
-   * 7.9.2 - `ExportFile`
+   * 7.9.2 - `ExportFile()`
 
 
 ## License
