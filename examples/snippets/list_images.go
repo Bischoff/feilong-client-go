@@ -21,7 +21,8 @@ func main() {
 
 	result, err := client.ListImages(nil)
 	if err != nil {
-		fmt.Errorf("%s", err)
+		fmt.Println(err.Error())
+		return
 	}
 
 	fmt.Printf(

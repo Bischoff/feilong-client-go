@@ -20,7 +20,8 @@ func main() {
 	fileParams := feilong.ExportFileParams { SourceFile: "/etc/os-release" }
 	result, err := client.ExportFile(&fileParams)
 	if err != nil {
-		fmt.Errorf("%s", err)
+		fmt.Println(err.Error())
+		return
 	}
 
 	fmt.Println(string(result.Contents))

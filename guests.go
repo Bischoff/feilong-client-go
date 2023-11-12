@@ -148,6 +148,45 @@ func (c *Client) DeleteGuest(userid string) (error) {
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-info
+
+type GetGuestInfoOutput struct {
+	MaxMemKB	float64	`json:"max_mem_kb"`
+	NumCPUs		int	`json:"num_cpu"`
+	CPUTimeMuSec	int	`json:"cpu_time_us"`
+	PowerState	string	`json:"power_state"`
+	MemKB		int	`json:"mem_kb"`
+	OnlineCPUNum	int	`json:"online_cpu_num"`
+	OSDistro	string	`json:"os_distro"`
+	KernelInfo	string	`json:"kernel_info"`
+}
+
+type GetGuestInfoResult struct {
+	OverallRC	int	`json:"overallRC"`
+	ReturnCode	int	`json:"rc"`
+	Reason		int	`json:"rs"`
+	ErrorMsg	string	`json:"errmsg"`
+	ModuleId	int	`json:"modID"`
+	Output		GetGuestInfoOutput `json:"output"`
+}
+
+func (c *Client) GetGuestInfo(userid string) (*GetGuestInfoResult, error) {
+	var result GetGuestInfoResult
+
+	body, err := c.doRequest("GET", "/guests/" + userid + "/info", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#start-guest
 
 func (c *Client) StartGuest(userid string) (error) {

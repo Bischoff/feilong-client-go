@@ -6,7 +6,7 @@ From the `examples` directory, create a symbolic link to the snippet you want to
 $ ln -s snippets/get_version.go main.go
 ```
 
-Regenerate the `go.sum` file:
+Generate the `go.sum` file:
 
 ```bash
 $ go mod tidy
@@ -21,5 +21,13 @@ $ go install
 Run the example:
 
 ```bash
+$ export ZVM_CONNECTOR="1.2.3.4"
 $ example
+```
+
+or:
+
+```bash
+$ export ZVM_CONNECTOR="1.2.3.4"
+$ example MYGUEST
 ```

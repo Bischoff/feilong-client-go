@@ -19,7 +19,8 @@ func main() {
 
 	result, err := client.GetFeilongVersion()
 	if err != nil {
-		fmt.Errorf("%s", err)
+		fmt.Println(err.Error())
+		return
 	}
 
 	fmt.Printf("API version: %s\n", result.Output.APIVersion)

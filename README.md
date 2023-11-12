@@ -29,7 +29,7 @@ func main() {
 
         result, err := client.GetFeilongVersion()
         if err != nil {
-                fmt.Errorf("%s", err)
+                fmt.Println(err.Error())
                 return
         }
 
@@ -62,6 +62,7 @@ The numbers below refer to the section numbers in the Feilong documentation.
    * 7.5.2 - `CreateGuest()`
    * 7.5.15 - `ShowGuestDefinition()`
    * 7.5.16 - `DeleteGuest()`
+   * 7.5.18 - `GetGuestInfo()`
    * 7.5.24 - `StartGuest()`
    * 7.5.25 - `StopGuest()`
    * 7.5.39 - `DeployGuest()`

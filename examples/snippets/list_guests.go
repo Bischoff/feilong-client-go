@@ -19,7 +19,8 @@ func main() {
 
 	result, err := client.ListGuests()
 	if err != nil {
-		fmt.Errorf("%s", err)
+		fmt.Println(err.Error())
+		return
 	}
 
 	fmt.Println("Guests:")
