@@ -54,7 +54,7 @@ type CreateDiskLoadDev struct {
 	LUN		string	`json:"lun,omitempty"`
 }
 
-type CreateGuestGuest struct {
+type CreateGuestParams struct {
 	UserId		string	`json:"userid"`
 	VCPUs		int	`json:"vcpus"`
 	Memory		int	`json:"memory"`
@@ -71,10 +71,6 @@ type CreateGuestGuest struct {
 	CommentList	[]string `json:"comment_list,omitempty"`
 }
 
-type CreateGuestParams struct {
-	Guest		CreateGuestGuest `json:"guest"`
-}
-
 type CreateGuestResult struct {
 	OverallRC	int	`json:"overallRC"`
 	ReturnCode	int	`json:"rc"`
@@ -87,7 +83,8 @@ type CreateGuestResult struct {
 func (c *Client) CreateGuest(params *CreateGuestParams) (*CreateGuestResult, error) {
 	var result CreateGuestResult
 
-	body, err := json.Marshal(params)
+	wrapper := createGuestWrapper { Guest: *params }
+	body, err := json.Marshal(&wrapper)
 	if err != nil {
 		return nil, err
 	}
@@ -187,6 +184,28 @@ func (c *Client) GetGuestInfo(userid string) (*GetGuestInfoResult, error) {
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#create-guest-nic
+
+type CreateGuestNICParams struct {
+	VDev		string		`json:"vdev,omitempty"`
+	NICId		string		`json:"nic_id,omitempty"`
+	MACAddress	string		`json:"mac_addr,omitempty"`
+	Active		bool		`json:"active,omitempty"`
+}
+
+func (c *Client) CreateGuestNIC(userid string, params *CreateGuestNICParams) (error) {
+	wrapper := createGuestNICWrapper { NIC: *params }
+	body, err := json.Marshal(&wrapper)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/guests/" + userid + "/nic", body)
+
+	return err
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#start-guest
 
 func (c *Client) StartGuest(userid string) (error) {
@@ -248,4 +267,12 @@ func (c *Client) DeployGuest(userid string, params *DeployGuestParams) (error) {
 
 type simpleAction struct {
 	Action		string	`json:"action"`
+}
+
+type createGuestWrapper struct {
+	Guest		CreateGuestParams `json:"guest"`
+}
+
+type createGuestNICWrapper struct {
+	NIC		CreateGuestNICParams `json:"nic"`
 }
