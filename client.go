@@ -15,7 +15,7 @@ import (
 )
 
 const defaultConnector string = "localhost:35000"
-const defaultTimeout time.Duration = 120 * time.Second
+const defaultTimeout time.Duration = 300 * time.Second
 
 type Client struct {
 	Host		string

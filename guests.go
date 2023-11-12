@@ -263,6 +263,28 @@ func (c *Client) DeployGuest(userid string, params *DeployGuestParams) (error) {
 	return err
 }
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#update-guest-nic
+
+type UpdateGuestNICParams struct {
+	Couple		bool	`json:"couple"`
+	Active		bool	`json:"active,omitempty"`
+	VSwitch		string	`json:"vswitch,omitempty"`
+}
+
+func (c *Client) UpdateGuestNIC(userid string, vdev string, params *UpdateGuestNICParams) (error) {
+	wrapper := updateGuestNICWrapper { Info: *params }
+
+	body, err := json.Marshal(wrapper)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("PUT", "/guests/" + userid + "/nic/" + vdev, body)
+
+	return err
+}
+
+
 // For internal use
 
 type simpleAction struct {
@@ -275,4 +297,8 @@ type createGuestWrapper struct {
 
 type createGuestNICWrapper struct {
 	NIC		CreateGuestNICParams `json:"nic"`
+}
+
+type updateGuestNICWrapper struct {
+	Info		UpdateGuestNICParams `json:"info"`
 }
