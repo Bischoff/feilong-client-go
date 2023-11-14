@@ -148,7 +148,7 @@ func (c *Client) DeleteGuest(userid string) (error) {
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-info
 
 type GetGuestInfoOutput struct {
-	MaxMemKB	float64	`json:"max_mem_kb"`
+	MaxMemKB	int	`json:"max_mem_kb"`
 	NumCPUs		int	`json:"num_cpu"`
 	CPUTimeMuSec	int	`json:"cpu_time_us"`
 	PowerState	string	`json:"power_state"`
