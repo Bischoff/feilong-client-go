@@ -46,6 +46,7 @@ The library implements the [Feilong API](https://cloudlib4zvm.readthedocs.io/en/
 
 The following are not implemented yet:
 
+ * authentication
  * documentation
  * acceptance tests
  * many API functions (see below).
@@ -71,6 +72,7 @@ The numbers below refer to the section numbers in the Feilong documentation.
  * 7.7 - Images
    * 7.7.1 - `ListImages()`
  * 7.9 - Files
+   * 7.9.1 - `ImportFile()`
    * 7.9.2 - `ExportFile()`
 
 

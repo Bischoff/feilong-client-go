@@ -1,3 +1,3 @@
 module github.com/Bischoff/feilong-client-go
 
-go 1.19
+go 1.21

@@ -49,7 +49,12 @@ func (c *Client) doRequest(method string, path string, params []byte) ([]byte, e
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Add("Content-Type", "application/json")
+
+	contentType := "application/json"
+	if method == "PUT" && path == "/files" {
+		contentType = "application/octet-stream"
+	}
+	req.Header.Add("Content-Type", contentType)
 
 	res, err := c.HTTPClient.Do(req)
 	if err != nil {
@@ -66,5 +71,5 @@ func (c *Client) doRequest(method string, path string, params []byte) ([]byte, e
 		return nil, fmt.Errorf("HTTP status: %d, body: %s", res.StatusCode, body)
 	}
 
-	return body, err
+	return body, nil
 }
