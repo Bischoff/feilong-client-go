@@ -69,6 +69,8 @@ The numbers below refer to the section numbers in the Feilong documentation.
    * 7.5.25 - `StopGuest()`
    * 7.5.39 - `DeployGuest()`
    * 7.5.43 - `UpdateGuestNIC()`
+ * 7.6 - Host
+   * 7.6.2 - `GetHostInfo()`
  * 7.7 - Images
    * 7.7.1 - `ListImages()`
  * 7.9 - Files
