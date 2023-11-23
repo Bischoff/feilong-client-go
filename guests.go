@@ -185,6 +185,47 @@ func (c *Client) GetGuestInfo(userid string) (*GetGuestInfoResult, error) {
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-adapters-info
+
+type GetGuestAdaptersInfoAdapter struct {
+	LANOwner	string	`json:"lan_owner"`
+	LANName		string	`json:"lan_name"`
+	AdapterAddress	string	`json:"adapter_address,omitempty"`
+	AdapterStatus	string	`json:"adapter_status"`
+	MACAddress	string	`json:"mac_address,omitempty"`
+	IPAddress	string	`json:"mac_ip_address,omitempty"`
+	IPVersion	string	`json:"mac_ip_version"`
+}
+
+type GetGuestAdaptersInfoOutput struct {
+	Adapters	[]GetGuestAdaptersInfoAdapter `json:"adapters,omitempty"`
+}
+
+type GetGuestAdaptersInfoResult struct {
+	OverallRC	int	`json:"overallRC"`
+	ReturnCode	int	`json:"rc"`
+	Reason		int	`json:"rs"`
+	ErrorMsg	string	`json:"errmsg"`
+	ModuleId	int	`json:"modID"`
+	Output		GetGuestAdaptersInfoOutput `json:"output"`
+}
+
+func (c *Client) GetGuestAdaptersInfo(userid string) (*GetGuestAdaptersInfoResult, error) {
+	var result GetGuestAdaptersInfoResult
+
+	body, err := c.doRequest("GET", "/guests/" + userid + "/adapters", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#create-guest-nic
 
 type CreateGuestNICParams struct {
