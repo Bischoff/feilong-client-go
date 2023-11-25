@@ -17,28 +17,30 @@ type GetHostInfoCPUInfo struct {
 	Architecture	string	`json:"architecture"`
 }
 
+type GetHostInfoOutput struct {
+	ZVMHost		string	`json:"zvm_host"`
+	ZCCUserID	string	`json:"zcc_userid"`
+	IPLTime		string	`json:"ipl_time"`
+	HypervisorHostname string `json:"hypervisor_hostname"`
+	HypervisorType	string	`json:"hypervisor_type"`
+	HypervisorVersion int	`json:"hypervisor_version"`
+	DiskTotal	int	`json:"disk_total"`
+	DiskUsed	int	`json:"disk_used"`
+	DiskAvailable	int	`json:"disk_available"`
+	VCPUs		int	`json:"vcpus"`
+	VCPUsUsed	int	`json:"vcpus_used"`
+	MemoryMB	float64	`json:"memory_mb"`
+	MemoryMBUsed	float64	`json:"memory_mb_used"`
+	CPUInfo		GetHostInfoCPUInfo `json:"cpu_info"`
+}
+
 type GetHostInfoResult struct {
 	OverallRC	int	`json:"overallRC"`
 	ReturnCode	int	`json:"rc"`
 	Reason		int	`json:"rs"`
 	ErrorMsg	string	`json:"errmsg"`
 	ModuleId	int	`json:"modID"`
-	Output struct {
-		ZVMHost		string	`json:"zvm_host"`
-		ZCCUserID	string	`json:"zcc_userid"`
-		IPLTime		string	`json:"ipl_time"`
-		HypervisorHostname string `json:"hypervisor_hostname"`
-		HypervisorType	string	`json:"hypervisor_type"`
-		HypervisorVersion int	`json:"hypervisor_version"`
-		DiskTotal	int	`json:"disk_total"`
-		DiskUsed	int	`json:"disk_used"`
-		DiskAvailable	int	`json:"disk_available"`
-		VCPUs		int	`json:"vcpus"`
-		VCPUsUsed	int	`json:"vcpus_used"`
-		MemoryMB	float64	`json:"memory_mb"`
-		MemoryMBUsed	float64	`json:"memory_mb_used"`
-		CPUInfo		GetHostInfoCPUInfo `json:"cpu_info"`
-	}
+	Output		GetHostInfoOutput `json:"output"`
 }
 
 func (c *Client) GetHostInfo() (*GetHostInfoResult, error) {

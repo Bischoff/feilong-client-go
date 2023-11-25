@@ -37,7 +37,7 @@ func main() {
 }
 ```
 
-For more examples, look in directory `examples/snippets`.
+For more examples, look in [snippets](examples/snippets/) directory.
 
 
 ## Completeness
@@ -52,13 +52,27 @@ The following are not implemented yet:
  * many API functions (see below).
 
 
+## Naming Conventions
+
+The following conventions are used both for function names and for input and output structures:
+
+ * names use camel case, with no underscores: `user_profile` in Feilong JSON API becomes `UserProfile` in this Go library
+ * acronyms are completly capitalized: `api_version` becomes `APIVersion`
+ * abbreviations are sometimes completed, but never capitalized: `max_version` becomes `MaxVersion`, and `modID` becomes `ModuleId`
+ * in some rare cases, the Feilong name is not completely respected, if Feilong names do not make sense: `mac_ip_address` becomes `IPAddress` because Media Access Control (MAC) is network layer 2 while Internet Protocol (IP) is layer 3.
+
+Please refer to the individual definitions to know the exact names.
+
+
 ### Implemented Functions
 
 The numbers below refer to the section numbers in the Feilong documentation.
 
- * 7.2 - Version
+ * 7.2 - [Version](version.go)
    * 7.2.1 - `GetVersion()`
- * 7.5 - Guests
+ * 7.4 - [SMAPI](smapi.go)
+   * 7.4.1 - `SMAPIHealthy()`
+ * 7.5 - [Guests](guests.go)
    * 7.5.1 - `ListGuests()`
    * 7.5.2 - `CreateGuest()`
    * 7.5.15 - `ShowGuestDefinition()`
@@ -70,11 +84,11 @@ The numbers below refer to the section numbers in the Feilong documentation.
    * 7.5.25 - `StopGuest()`
    * 7.5.39 - `DeployGuest()`
    * 7.5.43 - `UpdateGuestNIC()`
- * 7.6 - Host
+ * 7.6 - [Host](host.go)
    * 7.6.2 - `GetHostInfo()`
- * 7.7 - Images
+ * 7.7 - [Images](images.go)
    * 7.7.1 - `ListImages()`
- * 7.9 - Files
+ * 7.9 - [Files](file.go)
    * 7.9.1 - `ImportFile()`
    * 7.9.2 - `ExportFile()`
 
