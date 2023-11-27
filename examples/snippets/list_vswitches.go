@@ -26,5 +26,5 @@ func main() {
 	for _, s := range result.Output {
 		fmt.Println(s)
 	}
-	Println()
+	fmt.Println()
 }

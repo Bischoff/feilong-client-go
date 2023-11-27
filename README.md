@@ -58,10 +58,10 @@ The following conventions are used both for function names and for input and out
 
  * names use camel case, with no underscores: `user_profile` in Feilong JSON API becomes `UserProfile` in this Go library
  * acronyms are completly capitalized: `api_version` becomes `APIVersion`
- * abbreviations are sometimes completed, but never capitalized: `max_version` becomes `MaxVersion`, and `modID` becomes `ModuleId`
- * in some rare cases, the Feilong name is not completely respected, if Feilong names include typos or do not make sense: `mac_ip_address` becomes `IPAddress` because Media Access Control (MAC) is network layer 2 while Internet Protocol (IP) is layer 3.
+ * abbreviations are sometimes completed, but never fully capitalized: `max_version` becomes `MaxVersion`, and `modID` becomes `ModuleId`
+ * in some cases, the Feilong name is not completely respected, if Feilong names include typos or do not make sense: `continueousFail` becomes `ContinuousFail`.
 
-Please refer to the individual definitions to know the exact names.
+Please refer to the individual definitions to know the exact names used in this library.
 
 
 ### Implemented Functions
@@ -89,7 +89,7 @@ The numbers below refer to the section numbers in the Feilong documentation.
  * 7.7 - [Images](images.go)
    * 7.7.1 - `ListImages()`
    * 7.7.3 - `ExportImage()`
- * 7.8 - [VSwitch](vswitches.go)
+ * 7.8 - [VSwitches](vswitches.go)
    * 7.8.2 - `ListVSwitches()`
  * 7.9 - [Files](file.go)
    * 7.9.1 - `ImportFile()`
