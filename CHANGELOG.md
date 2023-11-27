@@ -1,7 +1,7 @@
 ## 0.0.2 - unreleased
 
 FEATURES:
- * function GetGuestAdaptersInfo()
+ * more functions
 
 
 ## 0.0.1 - 2023-11-21
