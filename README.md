@@ -40,18 +40,6 @@ func main() {
 For more examples, look in [snippets](examples/snippets/) directory.
 
 
-## Completeness
-
-The library implements the [Feilong API](https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#) version 1.0.
-
-The following are not implemented yet:
-
- * authentication
- * documentation
- * acceptance tests
- * many API functions (see below).
-
-
 ## Naming Conventions
 
 The following conventions are used both for function names and for input and output structures:
@@ -62,6 +50,18 @@ The following conventions are used both for function names and for input and out
  * in some cases, the Feilong name is not completely respected, if Feilong names include typos or do not make sense: `continueousFail` becomes `ContinuousFail`.
 
 Please refer to the individual definitions to know the exact names used in this library.
+
+
+## Completeness
+
+The library implements the [Feilong API](https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#) version 1.0.
+
+The following are not implemented yet:
+
+ * authentication
+ * documentation
+ * acceptance tests
+ * many API functions (see below).
 
 
 ### Implemented Functions
@@ -94,6 +94,7 @@ The numbers below refer to the section numbers in the Feilong documentation.
    * 7.7.5 - `DeleteImage()`
  * 7.8 - [VSwitches](vswitches.go)
    * 7.8.2 - `ListVSwitches()`
+   * 7.8.3 - `GetVSwitchDetails()`
  * 7.9 - [Files](file.go)
    * 7.9.1 - `ImportFile()`
    * 7.9.2 - `ExportFile()`
