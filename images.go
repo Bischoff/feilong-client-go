@@ -129,6 +129,34 @@ func (c *Client) ExportImage(name string, params *ExportImageParams) (*ExportIma
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-root-disk-size-of-image
+
+type GetRootDiskSizeResult struct {
+	OverallRC	int	`json:"overallRC"`
+	ReturnCode	int	`json:"rc"`
+	Reason		int	`json:"rs"`
+	ErrorMsg	string	`json:"errmsg"`
+	ModuleId	int	`json:"modID"`
+	Output		string	`json:"output"`
+}
+
+func (c *Client) GetRootDiskSize(name string) (*GetRootDiskSizeResult, error) {
+	var result GetRootDiskSizeResult
+
+	body, err := c.doRequest("GET", "/images/" + name + "/root_disk_size", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#delete-image
 
 func (c *Client) DeleteImage(name string) (error) {
