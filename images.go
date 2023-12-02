@@ -129,6 +129,15 @@ func (c *Client) ExportImage(name string, params *ExportImageParams) (*ExportIma
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#delete-image
+
+func (c *Client) DeleteImage(name string) (error) {
+	_, err := c.doRequest("DELETE", "/images/" + name, nil)
+
+	return err
+}
+
+
 // For internal use
 
 type createImageWrapper struct {
