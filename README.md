@@ -88,6 +88,7 @@ The numbers below refer to the section numbers in the Feilong documentation.
    * 7.6.2 - `GetHostInfo()`
  * 7.7 - [Images](images.go)
    * 7.7.1 - `ListImages()`
+   * 7.7.2 - `CreateImage()`
    * 7.7.3 - `ExportImage()`
  * 7.8 - [VSwitches](vswitches.go)
    * 7.8.2 - `ListVSwitches()`

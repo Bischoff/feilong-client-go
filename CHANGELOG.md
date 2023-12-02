@@ -1,7 +1,15 @@
-## 0.0.2 - unreleased
+## 0.0.3 - Unreleased
 
 FEATURES:
  * more functions
+ * more examples
+
+
+## 0.0.2 - 2023-12-02
+
+FEATURES:
+ * more functions
+ * more examples
 
 
 ## 0.0.1 - 2023-11-21

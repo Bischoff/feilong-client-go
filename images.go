@@ -54,6 +54,35 @@ func (c *Client) ListImages(imageName *string) (*ListImagesResult, error) {
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#create-image
+
+type CreateImageMeta struct {
+	OSVersion	string	`json:"os_version"`
+	MD5Sum		string	`json:"md5sum,omitempty"`
+	DiskType	string	`json:"disk_type,omitempty"`
+}
+
+type CreateImageParams struct {
+	ImageName	string	`json:"image_name"`
+	URL		string	`json:"url"`
+	ImageMeta	CreateImageMeta	`json:"image_meta"`
+	RemoteHost	string	`json:"remote_host,omitempty"`
+}
+
+func (c *Client) CreateImage(params *CreateImageParams) error {
+	wrapper := createImageWrapper { Image: *params }
+
+	body, err := json.Marshal(&wrapper)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/images", body)
+
+	return err
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#export-image
 
 type ExportImageParams struct {
@@ -101,6 +130,10 @@ func (c *Client) ExportImage(name string, params *ExportImageParams) (*ExportIma
 
 
 // For internal use
+
+type createImageWrapper struct {
+	Image		CreateImageParams `json:"image"`
+}
 
 type exportImageWrapper struct {
 	Location	ExportImageParams `json:"location"`
