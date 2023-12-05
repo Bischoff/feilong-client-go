@@ -144,6 +144,15 @@ func (c *Client) GetVSwitchDetails(name string) (*GetVSwitchDetailsResult, error
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#delete-vswitch
+
+func (c *Client) DeleteVSwitch(name string) (error) {
+	_, err := c.doRequest("DELETE", "/vswitches/" + name, nil)
+
+	return err
+}
+
+
 // For internal use
 
 type createVSwitchWrapper struct {

@@ -96,6 +96,7 @@ The numbers below refer to the section numbers in the Feilong documentation.
    * 7.8.1 - `CreateVSwitch()`
    * 7.8.2 - `ListVSwitches()`
    * 7.8.3 - `GetVSwitchDetails()`
+   * 7.8.7 - `DeleteVSwitch()`
  * 7.9 - [Files](file.go)
    * 7.9.1 - `ImportFile()`
    * 7.9.2 - `ExportFile()`

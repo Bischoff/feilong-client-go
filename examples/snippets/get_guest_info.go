@@ -30,7 +30,7 @@ func main() {
 	}
 
 	fmt.Printf("Information for %s:\n", userid)
-	fmt.Printf("  Maximum memory: %f KiB\n", result.Output.MaxMemKB)
+	fmt.Printf("  Maximum memory: %d KiB\n", result.Output.MaxMemKB)
 	fmt.Printf("  Number of CPUs: %d\n", result.Output.NumCPUs)
 	fmt.Printf("  CPU time: %d µs\n", result.Output.CPUTimeMuSec)
 	fmt.Printf("  Power state: %s\n", result.Output.PowerState)
