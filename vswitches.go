@@ -11,6 +11,35 @@ import (
 )
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#create-vswitch
+
+type CreateVSwitchParams struct {
+	Name		string	`json:"name"`
+	RealDev		string	`json:"rdev,omitempty"`
+	Controller	string	`json:"controller,omitempty"`
+	Connection	string	`json:"connection,omitempty"`
+	NetworkType	string	`json:"network_type,omitempty"`
+	Router		string	`json:"router,omitempty"`
+	VLANId		interface{} `json:"vid,omitempty"`
+	PortType	string	`json:"port_type,omitempty"`
+	GVRP		string	`json:"gvrp,omitempty"`
+	QueueMem	int	`json:"queue_mem,omitempty"`
+	NativeVLANId	int	`json:"native_vid,omitempty"`
+	Persist		bool	`json:"persist,omitempty"`
+}
+
+func (c *Client) CreateVSwitch(params *CreateVSwitchParams) error {
+	wrapper := createVSwitchWrapper { VSwitch: *params }
+	body, err := json.Marshal(&wrapper)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/vswitches", body)
+	return err
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#list-vswitches
 
 type ListVSwitchesResult struct {
@@ -112,4 +141,11 @@ func (c *Client) GetVSwitchDetails(name string) (*GetVSwitchDetailsResult, error
 	}
 
 	return &result, nil
+}
+
+
+// For internal use
+
+type createVSwitchWrapper struct {
+	VSwitch		CreateVSwitchParams `json:"vswitch"`
 }

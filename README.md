@@ -93,6 +93,7 @@ The numbers below refer to the section numbers in the Feilong documentation.
    * 7.7.4 - `GetRootDiskSize()`
    * 7.7.5 - `DeleteImage()`
  * 7.8 - [VSwitches](vswitches.go)
+   * 7.8.1 - `CreateVSwitch()`
    * 7.8.2 - `ListVSwitches()`
    * 7.8.3 - `GetVSwitchDetails()`
  * 7.9 - [Files](file.go)
