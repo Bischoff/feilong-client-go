@@ -47,7 +47,7 @@ The following conventions are used both for function names and for input and out
  * names use camel case, with no underscores: `user_profile` in Feilong JSON API becomes `UserProfile` in this Go library
  * acronyms are completly capitalized: `api_version` becomes `APIVersion`
  * abbreviations are sometimes completed, but never fully capitalized: `max_version` becomes `MaxVersion`, and `modID` becomes `ModuleId`
- * in some cases, the Feilong name is not completely respected, if Feilong names include typos or do not make sense: `continueousFail` becomes `ContinuousFail`.
+ * the Feilong name is not completely respected if it includes typos or does not make sense: `continueousFail` becomes `ContinuousFail`.
 
 Please refer to the individual definitions to know the exact names used in this library.
 
@@ -58,7 +58,6 @@ The library implements the [Feilong API](https://cloudlib4zvm.readthedocs.io/en/
 
 The following are not implemented yet:
 
- * authentication
  * documentation
  * acceptance tests
  * many API functions (see below).
@@ -70,6 +69,8 @@ The numbers below refer to the section numbers in the Feilong documentation.
 
  * 7.2 - [Version](version.go)
    * 7.2.1 - `GetVersion()`
+ * 7.3 - [Token](token.go)
+   * 7.3.1 - `CreateToken()`
  * 7.4 - [SMAPI](smapi.go)
    * 7.4.1 - `SMAPIHealthy()`
  * 7.5 - [Guests](guests.go)

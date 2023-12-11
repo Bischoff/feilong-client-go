@@ -20,6 +20,7 @@ const defaultTimeout time.Duration = 300 * time.Second
 type Client struct {
 	Host		string
 	HTTPClient	*http.Client
+	Token		*string
 }
 
 func NewClient(connector *string, timeout *time.Duration) (*Client) {
@@ -36,6 +37,7 @@ func NewClient(connector *string, timeout *time.Duration) (*Client) {
 	c := Client{
 		HTTPClient:	&http.Client{Timeout: t},
 		Host:		h,
+		Token:		nil,
 	}
 
 	return &c
@@ -56,6 +58,14 @@ func (c *Client) doRequest(method string, path string, params []byte) ([]byte, e
 	}
 	req.Header.Add("Content-Type", contentType)
 
+	if c.Token != nil {
+		if method == "POST" && path == "/token" {
+			req.Header.Add("X-Admin-Token", *c.Token)
+		} else {
+			req.Header.Add("X-Auth-Token", *c.Token)
+		}
+	}
+
 	res, err := c.HTTPClient.Do(req)
 	if err != nil {
 		return nil, err
@@ -69,6 +79,12 @@ func (c *Client) doRequest(method string, path string, params []byte) ([]byte, e
 
 	if res.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("HTTP status: %d, body: %s", res.StatusCode, body)
+	}
+
+	if c.Token != nil {
+		if method == "POST" && path == "/token" {
+			*c.Token = res.Header.Get("X-Auth-Token")
+		}
 	}
 
 	return body, nil
