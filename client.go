@@ -45,7 +45,7 @@ func NewClient(connector *string, timeout *time.Duration) (*Client) {
 
 // For internal use
 func (c *Client) doRequest(method string, path string, params []byte) ([]byte, error) {
-	url := "http://" + c.Host + path
+	url := c.Host + path
 	reader := bytes.NewReader(params)
 	req, err := http.NewRequest(method, url, reader)
 	if err != nil {
