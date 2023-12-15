@@ -12,6 +12,17 @@ import (
 )
 
 
+// Common structures
+
+type GuestDisk struct {
+	Size		string	`json:"size"`
+	Format		string	`json:"format,omitempty"`
+	IsBootDisk	bool	`json:"is_boot_disk,omitempty"`
+	VDev 		string	`json:"vdev,omitempty"`
+	DiskPool	string	`json:"disk_pool,omitempty"`
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#list-guests
 
 type ListGuestsResult struct {
@@ -42,14 +53,6 @@ func (c *Client) ListGuests() (*ListGuestsResult, error) {
 
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#create-guest
 
-type CreateGuestDisk struct {
-	Size		string	`json:"size"`
-	Format		string	`json:"format,omitempty"`
-	IsBootDisk	bool	`json:"is_boot_disk,omitempty"`
-	VDev 		string	`json:"vdev,omitempty"`
-	DiskPool	string	`json:"disk_pool,omitempty"`
-}
-
 type CreateDiskLoadDev struct {
 	PortName	string	`json:"portname,omitempty"`
 	LUN		string	`json:"lun,omitempty"`
@@ -60,7 +63,7 @@ type CreateGuestParams struct {
 	VCPUs		int	`json:"vcpus"`
 	Memory		int	`json:"memory"`
 	UserProfile	string	`json:"user_profile,omitempty"`
-	DiskList	[]CreateGuestDisk `json:"disk_list,omitempty"`
+	DiskList	[]GuestDisk `json:"disk_list,omitempty"`
 	MaxCPU		int	`json:"max_cpu,omitempty"`
 	MaxMem		string	`json:"max_mem,omitempty"`
 	IPLFrom		string	`json:"ipl_from,omitempty"`
@@ -78,7 +81,7 @@ type CreateGuestResult struct {
 	Reason		int	`json:"rs"`
 	ErrorMsg	string	`json:"errmsg"`
 	ModuleId	int	`json:"modID"`
-	Output		[]CreateGuestDisk `json:"output"`
+	Output		[]GuestDisk `json:"output"`
 }
 
 func (c *Client) CreateGuest(params *CreateGuestParams) (*CreateGuestResult, error) {
@@ -91,6 +94,44 @@ func (c *Client) CreateGuest(params *CreateGuestParams) (*CreateGuestResult, err
 	}
 
 	body, err = c.doRequest("POST", "/guests", body)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#guest-add-disks
+
+type GuestAddDisksParams struct {
+	DiskList	[]GuestDisk `json:"disk_list,omitempty"`
+}
+
+type GuestAddDisksResult struct {
+	OverallRC	int	`json:"overallRC"`
+	ReturnCode	int	`json:"rc"`
+	Reason		int	`json:"rs"`
+	ErrorMsg	string	`json:"errmsg"`
+	ModuleId	int	`json:"modID"`
+	Output		[]GuestDisk `json:"output"`
+}
+
+func (c *Client) GuestAddDisks(userid string, params *GuestAddDisksParams) (*GuestAddDisksResult, error) {
+	wrapper := guestAddDisksWrapper { DiskInfo: *params }
+	var result GuestAddDisksResult
+
+	body, err := json.Marshal(&wrapper)
+	if err != nil {
+		return nil, err
+	}
+
+	body, err = c.doRequest("POST", "/guests/" + userid + "/disks", body)
 	if err != nil {
 		return nil, err
 	}
@@ -320,6 +361,7 @@ func (c *Client) DeployGuest(userid string, params *DeployGuestParams) (error) {
 	return err
 }
 
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#update-guest-nic
 
 type UpdateGuestNICParams struct {
@@ -350,6 +392,10 @@ type simpleAction struct {
 
 type createGuestWrapper struct {
 	Guest		CreateGuestParams `json:"guest"`
+}
+
+type guestAddDisksWrapper struct {
+	DiskInfo	GuestAddDisksParams `json:"disk_info"`
 }
 
 type createGuestNICWrapper struct {

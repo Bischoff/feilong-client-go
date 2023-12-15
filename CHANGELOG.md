@@ -3,6 +3,8 @@
 FEATURES:
  * support authentication tokens
  * support HTTPS
+ * more functions
+ * more examples
 
 
 ## 0.0.3 - 2023-12-11

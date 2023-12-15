@@ -76,6 +76,7 @@ The numbers below refer to the section numbers in the Feilong documentation.
  * 7.5 - [Guests](guests.go)
    * 7.5.1 - `ListGuests()`
    * 7.5.2 - `CreateGuest()`
+   * 7.5.3 - `GuestAddDisks()`
    * 7.5.15 - `ShowGuestDefinition()`
    * 7.5.16 - `DeleteGuest()`
    * 7.5.18 - `GetGuestInfo()`
