@@ -145,6 +145,26 @@ func (c *Client) GuestAddDisks(userid string, params *GuestAddDisksParams) (*Gue
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#guest-delete-disks
+
+type GuestDeleteDisksParams struct {
+	VDevList	[]string `json:"vdev_list,omitempty"`
+}
+
+func (c *Client) GuestDeleteDisks(userid string, params *GuestDeleteDisksParams) (error) {
+	wrapper := guestDeleteDisksWrapper { VDevInfo: *params }
+
+	body, err := json.Marshal(&wrapper)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("DELETE", "/guests/" + userid + "/disks", body)
+
+	return err
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#show-guest-definition
 
 type ShowGuestDefinitionOutput struct {
@@ -396,6 +416,10 @@ type createGuestWrapper struct {
 
 type guestAddDisksWrapper struct {
 	DiskInfo	GuestAddDisksParams `json:"disk_info"`
+}
+
+type guestDeleteDisksWrapper struct {
+	VDevInfo	GuestDeleteDisksParams `json:"vdev_info"`
 }
 
 type createGuestNICWrapper struct {
