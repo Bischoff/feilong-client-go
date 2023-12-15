@@ -10,6 +10,36 @@ import (
 	"encoding/json"
 )
 
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guests-list
+
+type GetGuestListResult struct {
+	OverallRC	int	`json:"overallRC"`
+	ReturnCode	int	`json:"rc"`
+	Reason		int	`json:"rs"`
+	ErrorMsg	string	`json:"errmsg"`
+	ModuleId	int	`json:"modID"`
+	Output		[]string `json:"output"`
+}
+
+// English grammar: "guest list", not "guests list"
+func (c *Client) GetGuestList() (*GetGuestListResult, error) {
+	var result GetGuestListResult
+
+	body, err := c.doRequest("GET", "/host/guests", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-host-info
 
 type GetHostInfoCPUInfo struct {
