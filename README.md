@@ -47,7 +47,7 @@ The following conventions are used both for function names and for input and out
  * names use camel case, with no underscores: `user_profile` in Feilong JSON API becomes `UserProfile` in this Go library
  * acronyms are completly capitalized: `api_version` becomes `APIVersion`
  * abbreviations are sometimes completed, but never fully capitalized: `max_version` becomes `MaxVersion`, and `modID` becomes `ModuleId`
- * the Feilong name is not completely respected if it includes typos or does not make sense: `continueousFail` becomes `ContinuousFail`.
+ * the Feilong name is not completely respected if it does not respect English grammar or is otherwise wrong: `GetGuestsList` becomes `GetGuestList`.
 
 Please refer to the individual definitions to know the exact names used in this library.
 
@@ -72,7 +72,7 @@ The numbers below refer to the section numbers in the Feilong documentation.
  * 7.3 - [Token](token.go)
    * 7.3.1 - `CreateToken()`
  * 7.4 - [SMAPI](smapi.go)
-   * 7.4.1 - `SMAPIHealthy()`
+   * 7.4.1 - `SMAPIHealth()`
  * 7.5 - [Guests](guests.go)
    * 7.5.1 - `ListGuests()`
    * 7.5.2 - `CreateGuest()`

@@ -30,7 +30,7 @@ func main() {
 		}
 	}
 
-	result, err := client.SMAPIHealthy()
+	result, err := client.SMAPIHealth()
 	if err != nil {
 		fmt.Println(err.Error())
 		return

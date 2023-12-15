@@ -10,23 +10,23 @@ import (
 	"encoding/json"
 )
 
-// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#smapi-healthy
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#report-health-of-smapi
 
-type SMAPIHealthySMAPI struct {
+type SMAPIHealthSMAPI struct {
 	TotalSuccess	int	`json:"totalSuccess"`
 	TotalFail	int	`json:"totalFail"`
 	LastSuccess	string	`json:"lastSuccess"`
 	LastFail	string	`json:"lastFail"`
-	ContinuousFail	int	`json:"continueousFail"`
+	ContinuousFail	int	`json:"continuousFail"`
 	Healthy		bool	`json:"healthy"`
 }
 
-type SMAPIHealthyResult struct {
-	SMAPI		SMAPIHealthySMAPI `json:"SMAPI"`
+type SMAPIHealthResult struct {
+	SMAPI		SMAPIHealthSMAPI `json:"SMAPI"`
 }
 
-func (c *Client) SMAPIHealthy() (*SMAPIHealthyResult, error) {
-	var result SMAPIHealthyResult
+func (c *Client) SMAPIHealth() (*SMAPIHealthResult, error) {
+	var result SMAPIHealthResult
 
 	body, err := c.doRequest("GET", "/smapi-healthy", nil)
 	if err != nil {
