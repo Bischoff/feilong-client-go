@@ -1,4 +1,9 @@
-## 0.0.4 - Unreleased
+## 0.0.5 - Unreleased
+
+FEATURES:
+ * first documentation
+
+## 0.0.4 - 2023-12-16
 
 FEATURES:
  * support authentication tokens
