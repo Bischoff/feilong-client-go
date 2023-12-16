@@ -90,6 +90,7 @@ The numbers below refer to the section numbers in the Feilong documentation.
  * 7.6 - [Host](host.go)
    * 7.6.1 - `GetGuestList()`
    * 7.6.2 - `GetHostInfo()`
+   * 7.6.3 - `GetHostDiskPoolInfo()`, `GetHostDiskPoolDetails()`
  * 7.7 - [Images](images.go)
    * 7.7.1 - `ListImages()`
    * 7.7.2 - `CreateImage()`

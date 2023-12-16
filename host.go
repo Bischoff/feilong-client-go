@@ -88,3 +88,85 @@ func (c *Client) GetHostInfo() (*GetHostInfoResult, error) {
 
 	return &result, nil
 }
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-host-disk-pool-info
+
+type GetHostDiskPoolInfoOutput struct {
+	DiskAvailable	int	`json:"disk_available"`
+	DiskTotal	int	`json:"disk_total"`
+	DiskUsed	int	`json:"disk_used"`
+}
+
+type GetHostDiskPoolInfoResult struct {
+	OverallRC	int	`json:"overallRC"`
+	ReturnCode	int	`json:"rc"`
+	Reason		int	`json:"rs"`
+	ErrorMsg	string	`json:"errmsg"`
+	ModuleId	int	`json:"modID"`
+	Output		GetHostDiskPoolInfoOutput `json:"output"`
+}
+
+func (c *Client) GetHostDiskPoolInfo(poolName *string) (*GetHostDiskPoolInfoResult, error) {
+	var result GetHostDiskPoolInfoResult
+
+	req := "/host/diskpool"
+        if poolName != nil {
+		req += "?poolname=" + *poolName
+	}
+
+	body, err := c.doRequest("GET", req, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+// Same, with details:
+
+type Volume struct {
+	VolumeName	string	`json:"volume_name"`
+	DeviceType	string	`json:"device_type"`
+	StartCylinder	string	`json:"start_cylinder"`
+	FreeSize	int	`json:"free_size"`
+	DASDGroup	string	`json:"dasd_group"`
+	RegionName	string	`json:"region_name"`
+}
+
+type GetHostDiskPoolDetailsResult struct {
+	OverallRC	int	`json:"overallRC"`
+	ReturnCode	int	`json:"rc"`
+	Reason		int	`json:"rs"`
+	ErrorMsg	string	`json:"errmsg"`
+	ModuleId	int	`json:"modID"`
+	Output		map[string][]Volume `json:"output"`
+}
+
+func (c *Client) GetHostDiskPoolDetails(poolName *string) (*GetHostDiskPoolDetailsResult, error) {
+	var result GetHostDiskPoolDetailsResult
+
+	req := "/host/diskpool"
+        if poolName != nil {
+		req += "?poolname=" + *poolName + "&details=true"
+	} else {
+		req += "?details=true"
+	}
+
+	body, err := c.doRequest("GET", req, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
