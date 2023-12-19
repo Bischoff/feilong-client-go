@@ -144,6 +144,45 @@ func (c *Client) GetVSwitchDetails(name string) (*GetVSwitchDetailsResult, error
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#grant-user-to-vswitch
+
+type GrantUserToVSwitchParams struct {
+	GrantUserId	string	`json:"grant_userid"`
+}
+
+func (c *Client) GrantUserToVSwitch(name string, params *GrantUserToVSwitchParams) (error) {
+	wrapper := grantUserToVSwitchWrapper { VSwitch: *params }
+
+	body, err := json.Marshal(&wrapper)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("PUT", "/vswitches/" + name, body)
+
+	return err
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#revoke-user-from-vswitch
+
+type RevokeUserFromVSwitchParams struct {
+	RevokeUserId	string	`json:"revoke_userid"`
+}
+
+func (c *Client) RevokeUserFromVSwitch(name string, params *RevokeUserFromVSwitchParams) (error) {
+	wrapper := revokeUserFromVSwitchWrapper { VSwitch: *params }
+
+	body, err := json.Marshal(&wrapper)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("PUT", "/vswitches/" + name, body)
+
+	return err
+}
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#delete-vswitch
 
 func (c *Client) DeleteVSwitch(name string) (error) {
@@ -157,4 +196,12 @@ func (c *Client) DeleteVSwitch(name string) (error) {
 
 type createVSwitchWrapper struct {
 	VSwitch		CreateVSwitchParams `json:"vswitch"`
+}
+
+type grantUserToVSwitchWrapper struct {
+	VSwitch		GrantUserToVSwitchParams `json:"vswitch"`
+}
+
+type revokeUserFromVSwitchWrapper struct {
+	VSwitch		RevokeUserFromVSwitchParams `json:"vswitch"`
 }

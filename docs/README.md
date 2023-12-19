@@ -53,6 +53,8 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.8.1 - `CreateVSwitch()`
    * 7.8.2 - `ListVSwitches()`
    * 7.8.3 - `GetVSwitchDetails()`
+   * 7.8.4 - `GrantUserToVSwitch()`
+   * 7.8.5 - `RevokeUserFromVSwitch()`
    * 7.8.7 - `DeleteVSwitch()`
  * 7.9 - [Files](https://github.com/Bischoff/feilong-client-go/blob/main/file.go)
    * 7.9.1 - `ImportFile()`
