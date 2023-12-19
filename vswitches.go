@@ -183,6 +183,32 @@ func (c *Client) RevokeUserFromVSwitch(name string, params *RevokeUserFromVSwitc
 	return err
 }
 
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#set-user-vlanid-to-vswitch
+
+type UserVLANId struct {
+	UserId		string	`json:"userid"`
+	VLANId		int	`json:"vlanid"`
+}
+
+type SetUserVLANIdToVSwitchParams struct {
+	UserVLANId	UserVLANId `json:"user_vlan_id"`
+}
+
+func (c *Client) SetUserVLANIdToVSwitch(name string, params *SetUserVLANIdToVSwitchParams) (error) {
+	wrapper := setUserVLANIdToVSwitchWrapper { VSwitch: *params }
+
+	body, err := json.Marshal(&wrapper)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("PUT", "/vswitches/" + name, body)
+
+	return err
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#delete-vswitch
 
 func (c *Client) DeleteVSwitch(name string) (error) {
@@ -204,4 +230,8 @@ type grantUserToVSwitchWrapper struct {
 
 type revokeUserFromVSwitchWrapper struct {
 	VSwitch		RevokeUserFromVSwitchParams `json:"vswitch"`
+}
+
+type setUserVLANIdToVSwitchWrapper struct {
+	VSwitch		SetUserVLANIdToVSwitchParams `json:"vswitch"`
 }
