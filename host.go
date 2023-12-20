@@ -207,3 +207,36 @@ func (c *Client) GetHostDiskPoolVolumeNames(poolName *string) (*GetHostDiskPoolV
 
 	return &result, nil
 }
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-host-volume-info
+
+type GetHostVolumeInfoOutput struct {
+	VolumeType	string	`json:"volume_type"`
+	VolumeSize	string	`json:"volume_size"`
+}
+
+type GetHostVolumeInfoResult struct {
+	OverallRC	int	`json:"overallRC"`
+	ReturnCode	int	`json:"rc"`
+	Reason		int	`json:"rs"`
+	ErrorMsg	string	`json:"errmsg"`
+	ModuleId	int	`json:"modID"`
+	Output		GetHostVolumeInfoOutput `json:"output"`
+}
+
+func (c *Client) GetHostVolumeInfo(volumeName string) (*GetHostVolumeInfoResult, error) {
+	var result GetHostVolumeInfoResult
+
+	body, err := c.doRequest("GET", "/host/volume?volumename=" + volumeName, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
