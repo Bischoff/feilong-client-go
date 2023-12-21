@@ -240,3 +240,31 @@ func (c *Client) GetHostVolumeInfo(volumeName string) (*GetHostVolumeInfoResult,
 
 	return &result, nil
 }
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-host-ssi-cluster-info
+
+type GetHostSSIClusterInfoResult struct {
+	OverallRC	int	`json:"overallRC"`
+	ReturnCode	int	`json:"rc"`
+	Reason		int	`json:"rs"`
+	ErrorMsg	string	`json:"errmsg"`
+	ModuleId	int	`json:"modID"`
+	Output		[]string `json:"output"`
+}
+
+func (c *Client) GetHostSSIClusterInfo() (*GetHostSSIClusterInfoResult, error) {
+	var result GetHostSSIClusterInfoResult
+
+	body, err := c.doRequest("GET", "/host/ssi", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}

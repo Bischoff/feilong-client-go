@@ -45,6 +45,7 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.6.3 - `GetHostDiskPoolInfo()`, `GetHostDiskPoolDetails()`
    * 7.6.4 - `GetHostDiskPoolVolumeNames()`
    * 7.6.5 - `GetHostVolumeInfo()`
+   * 7.6.6 - `GetHostSSIClusterInfo()`
  * 7.7 - [Images](https://github.com/Bischoff/feilong-client-go/blob/main/images.go)
    * 7.7.1 - `ListImages()`
    * 7.7.2 - `CreateImage()`
