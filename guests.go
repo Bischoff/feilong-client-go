@@ -8,7 +8,6 @@ package feilong
 
 import (
 	"encoding/json"
-	"strings"
 )
 
 
@@ -346,7 +345,7 @@ func (c *Client) StopGuest(userid string) (error) {
 type DeployGuestParams struct {
 	Action		string	`json:"action"`
 	Image		string	`json:"image"`
-	TransportFiles	string	`json:"transportfiles,omitempty"` // list of comma-separated files
+	TransportFiles	string	`json:"transportfiles,omitempty"`
 	RemoteHost	string	`json:"remotehost,omitempty"`
 	VDev		string	`json:"vdev,omitempty"`
 	Hostname	string	`json:"hostname,omitempty"`
@@ -359,21 +358,6 @@ func (c *Client) DeployGuest(userid string, params *DeployGuestParams) (error) {
 	body, err := json.Marshal(params)
 	if err != nil {
 		return err
-	}
-
-	// HACK
-	// golang JSON encoder does not allow duplicate keys
-	// but Feilong accept multiple "transportfiles" keys
-	if strings.Contains(params.TransportFiles, ",") {
-		from := `"transportfiles":"` + params.TransportFiles + `"`
-		to := ""
-		transports := strings.Split(params.TransportFiles, ",")
-		last := len(transports) - 1
-		for i, s := range(transports) {
-			to += `"transportfiles":"` + s + `"`
-			if i != last { to += "," }
-		}
-		body = []byte(strings.Replace(string(body), from, to, 1))
 	}
 
 	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)

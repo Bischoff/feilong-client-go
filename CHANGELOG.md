@@ -2,6 +2,10 @@
 
 FEATURES:
  * first documentation
+ * remove support for several transport files
+ * more functions
+ * more examples
+
 
 ## 0.0.4 - 2023-12-16
 
