@@ -10,7 +10,6 @@ import (
 	"encoding/json"
 )
 
-
 // Common structures
 
 type GuestDisk struct {
@@ -141,6 +140,32 @@ func (c *Client) GuestAddDisks(userid string, params *GuestAddDisksParams) (*Gue
 	}
 
 	return &result, nil
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#guest-configure-disks
+
+type GuestConfigureDisk struct {
+	VDev		string	`json:"vdev,omitempty"`
+	Format		string	`json:"format"`
+	MountDirectory	string	`json:"mntdir,omitempty"`
+}
+
+type GuestConfigureDisksParams struct {
+	DiskList	[]GuestConfigureDisk `json:"disk_list,omitempty"`
+}
+
+func (c *Client) GuestConfigureDisks(userid string, params *GuestConfigureDisksParams) (error) {
+	wrapper := guestConfigureDisksWrapper { DiskInfo: *params }
+
+	body, err := json.Marshal(wrapper)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("PUT", "/guests/" + userid + "/disks", body)
+
+	return err
 }
 
 
@@ -400,6 +425,10 @@ type createGuestWrapper struct {
 
 type guestAddDisksWrapper struct {
 	DiskInfo	GuestAddDisksParams `json:"disk_info"`
+}
+
+type guestConfigureDisksWrapper struct {
+	DiskInfo	GuestConfigureDisksParams `json:"disk_info"`
 }
 
 type guestDeleteDisksWrapper struct {

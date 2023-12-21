@@ -29,6 +29,7 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.5.1 - `ListGuests()`
    * 7.5.2 - `CreateGuest()`
    * 7.5.3 - `GuestAddDisks()`
+   * 7.5.4 - `GuestConfigureDisks()`
    * 7.5.5 - `GuestDeleteDisks()`
    * 7.5.15 - `ShowGuestDefinition()`
    * 7.5.16 - `DeleteGuest()`
