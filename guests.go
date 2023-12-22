@@ -8,6 +8,7 @@ package feilong
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // Common structures
@@ -121,9 +122,9 @@ type GuestAddDisksResult struct {
 }
 
 func (c *Client) GuestAddDisks(userid string, params *GuestAddDisksParams) (*GuestAddDisksResult, error) {
-	wrapper := guestAddDisksWrapper { DiskInfo: *params }
 	var result GuestAddDisksResult
 
+	wrapper := guestAddDisksWrapper { DiskInfo: *params }
 	body, err := json.Marshal(&wrapper)
 	if err != nil {
 		return nil, err
@@ -157,7 +158,6 @@ type GuestConfigureDisksParams struct {
 
 func (c *Client) GuestConfigureDisks(userid string, params *GuestConfigureDisksParams) error {
 	wrapper := guestConfigureDisksWrapper { DiskInfo: *params }
-
 	body, err := json.Marshal(wrapper)
 	if err != nil {
 		return err
@@ -177,7 +177,6 @@ type GuestDeleteDisksParams struct {
 
 func (c *Client) GuestDeleteDisks(userid string, params *GuestDeleteDisksParams) error {
 	wrapper := guestDeleteDisksWrapper { VDevInfo: *params }
-
 	body, err := json.Marshal(&wrapper)
 	if err != nil {
 		return err
@@ -396,6 +395,38 @@ func (c *Client) ResetGuest(userid string) error {
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-console-output
+
+type GetGuestConsoleOutputResult struct {
+	OverallRC	int	`json:"overallRC"`
+	ReturnCode	int	`json:"rc"`
+	Reason		int	`json:"rs"`
+	ErrorMsg	string	`json:"errmsg"`
+	ModuleId	int	`json:"modID"`
+	Output		[]string `json:"output"`
+}
+
+func (c *Client) GetGuestConsoleOutput(userid string) (*GetGuestConsoleOutputResult, error) {
+	var result GetGuestConsoleOutputResult
+	params := simpleAction { Action: "get_console_output" }
+
+	body, err := json.Marshal(params)
+	if err != nil {
+		return nil, err
+	}
+
+	body, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
+
+	fmt.Println(string(body))
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#deploy-guest
 
 type DeployGuestParams struct {
@@ -432,7 +463,6 @@ type UpdateGuestNICParams struct {
 
 func (c *Client) UpdateGuestNIC(userid string, vdev string, params *UpdateGuestNICParams) error {
 	wrapper := updateGuestNICWrapper { Info: *params }
-
 	body, err := json.Marshal(wrapper)
 	if err != nil {
 		return err

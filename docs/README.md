@@ -43,6 +43,7 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.5.28 - `UnpauseGuest()`
    * 7.5.29 - `RebootGuest()`
    * 7.5.30 - `ResetGuest()`
+   * 7.5.31 - `GetGuestConsoleOutput()`
    * 7.5.39 - `DeployGuest()`
    * 7.5.43 - `UpdateGuestNIC()`
  * 7.6 - [Host](https://github.com/Bischoff/feilong-client-go/blob/main/host.go)
