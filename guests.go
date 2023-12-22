@@ -155,7 +155,7 @@ type GuestConfigureDisksParams struct {
 	DiskList	[]GuestConfigureDisk `json:"disk_list,omitempty"`
 }
 
-func (c *Client) GuestConfigureDisks(userid string, params *GuestConfigureDisksParams) (error) {
+func (c *Client) GuestConfigureDisks(userid string, params *GuestConfigureDisksParams) error {
 	wrapper := guestConfigureDisksWrapper { DiskInfo: *params }
 
 	body, err := json.Marshal(wrapper)
@@ -175,7 +175,7 @@ type GuestDeleteDisksParams struct {
 	VDevList	[]string `json:"vdev_list,omitempty"`
 }
 
-func (c *Client) GuestDeleteDisks(userid string, params *GuestDeleteDisksParams) (error) {
+func (c *Client) GuestDeleteDisks(userid string, params *GuestDeleteDisksParams) error {
 	wrapper := guestDeleteDisksWrapper { VDevInfo: *params }
 
 	body, err := json.Marshal(&wrapper)
@@ -224,7 +224,7 @@ func (c *Client) ShowGuestDefinition(userid string) (*ShowGuestDefinitionResult,
 
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#delete-guest
 
-func (c *Client) DeleteGuest(userid string) (error) {
+func (c *Client) DeleteGuest(userid string) error {
 	_, err := c.doRequest("DELETE", "/guests/" + userid, nil)
 
 	return err
@@ -320,7 +320,7 @@ type CreateGuestNICParams struct {
 	Active		bool		`json:"active,omitempty"`
 }
 
-func (c *Client) CreateGuestNIC(userid string, params *CreateGuestNICParams) (error) {
+func (c *Client) CreateGuestNIC(userid string, params *CreateGuestNICParams) error {
 	wrapper := createGuestNICWrapper { NIC: *params }
 	body, err := json.Marshal(&wrapper)
 	if err != nil {
@@ -335,33 +335,64 @@ func (c *Client) CreateGuestNIC(userid string, params *CreateGuestNICParams) (er
 
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#start-guest
 
-func (c *Client) StartGuest(userid string) (error) {
+func (c *Client) StartGuest(userid string) error {
 	params := simpleAction { Action: "start" }
 
-	body, err := json.Marshal(params)
-	if err != nil {
-		return err
-	}
-
-	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
-
-	return err
+	return c.doAction(userid, &params)
 }
 
 
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#stop-guest
 
-func (c *Client) StopGuest(userid string) (error) {
+func (c *Client) StopGuest(userid string) error {
 	params := simpleAction { Action: "stop" }
 
-	body, err := json.Marshal(params)
-	if err != nil {
-		return err
-	}
+	return c.doAction(userid, &params)
+}
 
-	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
 
-	return err
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#softstop-guest
+
+func (c *Client) SoftStopGuest(userid string) error {
+	params := simpleAction { Action: "softstop" }
+
+	return c.doAction(userid, &params)
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#pause-guest
+
+func (c *Client) PauseGuest(userid string) error {
+	params := simpleAction { Action: "pause" }
+
+	return c.doAction(userid, &params)
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#unpause-guest
+
+func (c *Client) UnpauseGuest(userid string) error {
+	params := simpleAction { Action: "unpause" }
+
+	return c.doAction(userid, &params)
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#reboot-guest
+
+func (c *Client) RebootGuest(userid string) error {
+	params := simpleAction { Action: "reboot" }
+
+	return c.doAction(userid, &params)
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#reset-guest
+
+func (c *Client) ResetGuest(userid string) error {
+	params := simpleAction { Action: "reset" }
+
+	return c.doAction(userid, &params)
 }
 
 
@@ -377,7 +408,7 @@ type DeployGuestParams struct {
 	SkipDiskCopy	bool	`json:"skipdiskcopy,omitempty"`
 }
 
-func (c *Client) DeployGuest(userid string, params *DeployGuestParams) (error) {
+func (c *Client) DeployGuest(userid string, params *DeployGuestParams) error {
 	params.Action = "deploy"
 
 	body, err := json.Marshal(params)
@@ -399,7 +430,7 @@ type UpdateGuestNICParams struct {
 	VSwitch		string	`json:"vswitch,omitempty"`
 }
 
-func (c *Client) UpdateGuestNIC(userid string, vdev string, params *UpdateGuestNICParams) (error) {
+func (c *Client) UpdateGuestNIC(userid string, vdev string, params *UpdateGuestNICParams) error {
 	wrapper := updateGuestNICWrapper { Info: *params }
 
 	body, err := json.Marshal(wrapper)
@@ -417,6 +448,17 @@ func (c *Client) UpdateGuestNIC(userid string, vdev string, params *UpdateGuestN
 
 type simpleAction struct {
 	Action		string	`json:"action"`
+}
+
+func (c *Client) doAction(userid string, params *simpleAction) error {
+	body, err := json.Marshal(*params)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
+
+	return err
 }
 
 type createGuestWrapper struct {

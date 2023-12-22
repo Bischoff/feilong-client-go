@@ -50,7 +50,7 @@ The following are not implemented yet:
 
  * acceptance tests
  * more documentation
- * half of the API functions.
+ * a third of the API functions.
 
 
 ## License

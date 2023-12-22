@@ -150,7 +150,7 @@ type GrantUserToVSwitchParams struct {
 	GrantUserId	string	`json:"grant_userid"`
 }
 
-func (c *Client) GrantUserToVSwitch(name string, params *GrantUserToVSwitchParams) (error) {
+func (c *Client) GrantUserToVSwitch(name string, params *GrantUserToVSwitchParams) error {
 	wrapper := grantUserToVSwitchWrapper { VSwitch: *params }
 
 	body, err := json.Marshal(&wrapper)
@@ -170,7 +170,7 @@ type RevokeUserFromVSwitchParams struct {
 	RevokeUserId	string	`json:"revoke_userid"`
 }
 
-func (c *Client) RevokeUserFromVSwitch(name string, params *RevokeUserFromVSwitchParams) (error) {
+func (c *Client) RevokeUserFromVSwitch(name string, params *RevokeUserFromVSwitchParams) error {
 	wrapper := revokeUserFromVSwitchWrapper { VSwitch: *params }
 
 	body, err := json.Marshal(&wrapper)
@@ -195,7 +195,7 @@ type SetUserVLANIdToVSwitchParams struct {
 	UserVLANId	UserVLANId `json:"user_vlan_id"`
 }
 
-func (c *Client) SetUserVLANIdToVSwitch(name string, params *SetUserVLANIdToVSwitchParams) (error) {
+func (c *Client) SetUserVLANIdToVSwitch(name string, params *SetUserVLANIdToVSwitchParams) error {
 	wrapper := setUserVLANIdToVSwitchWrapper { VSwitch: *params }
 
 	body, err := json.Marshal(&wrapper)
@@ -211,7 +211,7 @@ func (c *Client) SetUserVLANIdToVSwitch(name string, params *SetUserVLANIdToVSwi
 
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#delete-vswitch
 
-func (c *Client) DeleteVSwitch(name string) (error) {
+func (c *Client) DeleteVSwitch(name string) error {
 	_, err := c.doRequest("DELETE", "/vswitches/" + name, nil)
 
 	return err

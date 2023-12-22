@@ -159,7 +159,7 @@ func (c *Client) GetRootDiskSize(name string) (*GetRootDiskSizeResult, error) {
 
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#delete-image
 
-func (c *Client) DeleteImage(name string) (error) {
+func (c *Client) DeleteImage(name string) error {
 	_, err := c.doRequest("DELETE", "/images/" + name, nil)
 
 	return err
