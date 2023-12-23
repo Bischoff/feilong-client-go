@@ -453,6 +453,29 @@ func (c *Client) DeployGuest(userid string, params *DeployGuestParams) error {
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#capture-guest
+
+type CaptureGuestParams struct {
+	Action		string	`json:"action"`
+	Image		string	`json:"image"`
+	CaptureType	string	`json:"capture_type,omitempty"`
+	CompressLevel	int	`json:"compress_level,omitempty"`
+}
+
+func (c *Client) CaptureGuest(userid string, params *CaptureGuestParams) error {
+	params.Action = "capture"
+
+	body, err := json.Marshal(params)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
+
+	return err
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#update-guest-nic
 
 type UpdateGuestNICParams struct {
