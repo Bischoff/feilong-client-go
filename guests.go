@@ -8,7 +8,6 @@ package feilong
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // Common structures
@@ -416,8 +415,10 @@ func (c *Client) GetGuestConsoleOutput(userid string) (*GetGuestConsoleOutputRes
 	}
 
 	body, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
+	if err != nil {
+		return nil, err
+	}
 
-	fmt.Println(string(body))
 	err = json.Unmarshal(body, &result)
 	if err != nil {
 		return nil, err
@@ -473,6 +474,34 @@ func (c *Client) CaptureGuest(userid string, params *CaptureGuestParams) error {
 	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
 
 	return err
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-power-state
+
+type GetGuestPowerStateResult struct {
+	OverallRC	int	`json:"overallRC"`
+	ReturnCode	int	`json:"rc"`
+	Reason		int	`json:"rs"`
+	ErrorMsg	string	`json:"errmsg"`
+	ModuleId	int	`json:"modID"`
+	Output		string	`json:"output"`
+}
+
+func (c *Client) GetGuestPowerState(userid string) (*GetGuestPowerStateResult, error) {
+	var result GetGuestPowerStateResult
+
+	body, err := c.doRequest("GET", "/guests/" + userid + "/power_state", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
 }
 
 
