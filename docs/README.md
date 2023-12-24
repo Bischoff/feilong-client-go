@@ -48,6 +48,7 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.5.40 - `CaptureGuest()`
    * 7.5.42 - `GetGuestPowerState()`
    * 7.5.43 - `UpdateGuestNIC()`
+   * 7.5.44 - `DeleteGuestNIC()`
  * 7.6 - [Host](https://github.com/Bischoff/feilong-client-go/blob/main/host.go)
    * 7.6.1 - `GetHostGuestList()`
    * 7.6.2 - `GetHostInfo()`

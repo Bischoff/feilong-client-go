@@ -526,6 +526,24 @@ func (c *Client) UpdateGuestNIC(userid string, vdev string, params *UpdateGuestN
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#delete-guest-nic
+
+type DeleteGuestNICParams struct {
+	Active		bool `json:"active,omitempty"`
+}
+
+func (c *Client) DeleteGuestNIC(userid string, vdev string, params *DeleteGuestNICParams) error {
+	body, err := json.Marshal(&params)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("DELETE", "/guests/" + userid + "/nic/" + vdev, body)
+
+	return err
+}
+
+
 // For internal use
 
 type simpleAction struct {
