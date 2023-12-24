@@ -477,6 +477,27 @@ func (c *Client) CaptureGuest(userid string, params *CaptureGuestParams) error {
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#grow-root-volume-of-guest
+
+type GrowGuestRootVolumeParams struct {
+	Action		string	`json:"action"`
+	OSVersion	string	`json:"os_version"`
+}
+
+func (c *Client) GrowGuestRootVolume(userid string, params *GrowGuestRootVolumeParams) error {
+	params.Action = "grow_root_volume"
+
+	body, err := json.Marshal(params)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
+
+	return err
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-power-state
 
 type GetGuestPowerStateResult struct {
