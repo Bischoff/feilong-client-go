@@ -107,11 +107,11 @@ func (c *Client) CreateGuest(params *CreateGuestParams) (*CreateGuestResult, err
 
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#guest-add-disks
 
-type GuestAddDisksParams struct {
+type AddGuestDisksParams struct {
 	DiskList	[]GuestDisk `json:"disk_list,omitempty"`
 }
 
-type GuestAddDisksResult struct {
+type AddGuestDisksResult struct {
 	OverallRC	int	`json:"overallRC"`
 	ReturnCode	int	`json:"rc"`
 	Reason		int	`json:"rs"`
@@ -120,10 +120,10 @@ type GuestAddDisksResult struct {
 	Output		[]GuestDisk `json:"output"`
 }
 
-func (c *Client) GuestAddDisks(userid string, params *GuestAddDisksParams) (*GuestAddDisksResult, error) {
-	var result GuestAddDisksResult
+func (c *Client) AddGuestDisks(userid string, params *AddGuestDisksParams) (*AddGuestDisksResult, error) {
+	var result AddGuestDisksResult
 
-	wrapper := guestAddDisksWrapper { DiskInfo: *params }
+	wrapper := addGuestDisksWrapper { DiskInfo: *params }
 	body, err := json.Marshal(&wrapper)
 	if err != nil {
 		return nil, err
@@ -145,18 +145,18 @@ func (c *Client) GuestAddDisks(userid string, params *GuestAddDisksParams) (*Gue
 
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#guest-configure-disks
 
-type GuestConfigureDisk struct {
+type ConfigureGuestDisk struct {
 	VDev		string	`json:"vdev,omitempty"`
 	Format		string	`json:"format"`
 	MountDirectory	string	`json:"mntdir,omitempty"`
 }
 
-type GuestConfigureDisksParams struct {
-	DiskList	[]GuestConfigureDisk `json:"disk_list,omitempty"`
+type ConfigureGuestDisksParams struct {
+	DiskList	[]ConfigureGuestDisk `json:"disk_list,omitempty"`
 }
 
-func (c *Client) GuestConfigureDisks(userid string, params *GuestConfigureDisksParams) error {
-	wrapper := guestConfigureDisksWrapper { DiskInfo: *params }
+func (c *Client) ConfigureGuestDisks(userid string, params *ConfigureGuestDisksParams) error {
+	wrapper := configureGuestDisksWrapper { DiskInfo: *params }
 	body, err := json.Marshal(wrapper)
 	if err != nil {
 		return err
@@ -170,12 +170,12 @@ func (c *Client) GuestConfigureDisks(userid string, params *GuestConfigureDisksP
 
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#guest-delete-disks
 
-type GuestDeleteDisksParams struct {
+type DeleteGuestDisksParams struct {
 	VDevList	[]string `json:"vdev_list,omitempty"`
 }
 
-func (c *Client) GuestDeleteDisks(userid string, params *GuestDeleteDisksParams) error {
-	wrapper := guestDeleteDisksWrapper { VDevInfo: *params }
+func (c *Client) DeleteGuestDisks(userid string, params *DeleteGuestDisksParams) error {
+	wrapper := deleteGuestDisksWrapper { VDevInfo: *params }
 	body, err := json.Marshal(&wrapper)
 	if err != nil {
 		return err
@@ -547,16 +547,16 @@ type createGuestWrapper struct {
 	Guest		CreateGuestParams `json:"guest"`
 }
 
-type guestAddDisksWrapper struct {
-	DiskInfo	GuestAddDisksParams `json:"disk_info"`
+type addGuestDisksWrapper struct {
+	DiskInfo	AddGuestDisksParams `json:"disk_info"`
 }
 
-type guestConfigureDisksWrapper struct {
-	DiskInfo	GuestConfigureDisksParams `json:"disk_info"`
+type configureGuestDisksWrapper struct {
+	DiskInfo	ConfigureGuestDisksParams `json:"disk_info"`
 }
 
-type guestDeleteDisksWrapper struct {
-	VDevInfo	GuestDeleteDisksParams `json:"vdev_info"`
+type deleteGuestDisksWrapper struct {
+	VDevInfo	DeleteGuestDisksParams `json:"vdev_info"`
 }
 
 type createGuestNICWrapper struct {

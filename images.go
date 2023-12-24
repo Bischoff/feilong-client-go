@@ -131,7 +131,7 @@ func (c *Client) ExportImage(name string, params *ExportImageParams) (*ExportIma
 
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-root-disk-size-of-image
 
-type GetRootDiskSizeResult struct {
+type GetImageRootDiskSizeResult struct {
 	OverallRC	int	`json:"overallRC"`
 	ReturnCode	int	`json:"rc"`
 	Reason		int	`json:"rs"`
@@ -140,8 +140,8 @@ type GetRootDiskSizeResult struct {
 	Output		string	`json:"output"`
 }
 
-func (c *Client) GetRootDiskSize(name string) (*GetRootDiskSizeResult, error) {
-	var result GetRootDiskSizeResult
+func (c *Client) GetImageRootDiskSize(name string) (*GetImageRootDiskSizeResult, error) {
+	var result GetImageRootDiskSizeResult
 
 	body, err := c.doRequest("GET", "/images/" + name + "/root_disk_size", nil)
 	if err != nil {

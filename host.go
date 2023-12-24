@@ -13,7 +13,7 @@ import (
 
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guests-list
 
-type GetGuestListResult struct {
+type GetHostGuestListResult struct {
 	OverallRC	int	`json:"overallRC"`
 	ReturnCode	int	`json:"rc"`
 	Reason		int	`json:"rs"`
@@ -23,8 +23,8 @@ type GetGuestListResult struct {
 }
 
 // English grammar: "guest list", not "guests list"
-func (c *Client) GetGuestList() (*GetGuestListResult, error) {
-	var result GetGuestListResult
+func (c *Client) GetHostGuestList() (*GetHostGuestListResult, error) {
+	var result GetHostGuestListResult
 
 	body, err := c.doRequest("GET", "/host/guests", nil)
 	if err != nil {

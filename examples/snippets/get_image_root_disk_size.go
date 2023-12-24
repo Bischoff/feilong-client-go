@@ -36,7 +36,7 @@ func main() {
 	}
 	name := os.Args[1]
 
-	result, err := client.GetRootDiskSize(name)
+	result, err := client.GetImageRootDiskSize(name)
 	if err != nil {
 		fmt.Println(err.Error())
 		return

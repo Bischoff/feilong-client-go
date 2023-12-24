@@ -13,8 +13,6 @@ import (
 	"github.com/Bischoff/feilong-client-go"
 )
 
-const lineFormat = "%-27s%-11s%-34s%-10s%-12s%-9s %s\n"
-
 func main() {
 	connector := os.Getenv("ZVM_CONNECTOR")
 	if connector == "" {
@@ -32,33 +30,15 @@ func main() {
 		}
 	}
 
-	result, err := client.ListImages(nil)
+	result, err := client.GetHostGuestList()
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
 
-	fmt.Printf(
-		lineFormat,
-		"Image",
-		"Distro",
-		"MD5",
-		"Size",
-		"Bytes",
-		"Type",
-		"Comments",
-	)
+	fmt.Println("All guests on host:")
 	for _, s := range result.Output {
-		fmt.Printf(
-			lineFormat,
-			s.ImageName,
-			s.ImageOSDistro,
-			s.MD5Sum,
-			s.DiskSizeUnits,
-			s.ImageSizeInBytes,
-			s.Type,
-			s.Comments,
-		)
+		fmt.Print(s + " ")
 	}
-	fmt.Printf("\n")
+	fmt.Println("\n")
 }
