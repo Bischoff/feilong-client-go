@@ -428,6 +428,27 @@ func (c *Client) GetGuestConsoleOutput(userid string) (*GetGuestConsoleOutputRes
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#resize-memory-of-guest
+
+type ResizeGuestMemoryParams struct {
+	Action		string	`json:"action"`
+	Size		string	`json:"size"`
+}
+
+func (c *Client) ResizeGuestMemory(userid string, params *ResizeGuestMemoryParams) error {
+	params.Action = "resize_mem"
+
+	body, err := json.Marshal(params)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
+
+	return err
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#deploy-guest
 
 type DeployGuestParams struct {

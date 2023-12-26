@@ -44,6 +44,7 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.5.29 - `RebootGuest()`
    * 7.5.30 - `ResetGuest()`
    * 7.5.31 - `GetGuestConsoleOutput()`
+   * 7.5.38 - `ResizeGuestMemory()`
    * 7.5.39 - `DeployGuest()`
    * 7.5.40 - `CaptureGuest()`
    * 7.5.41 - `GrowGuestRootVolume()`
