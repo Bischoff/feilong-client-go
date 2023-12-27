@@ -229,6 +229,34 @@ func (c *Client) DeleteGuest(userid string) error {
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-power-state-from-hypervisor
+
+type GetGuestPowerStateFromHypervisorResult struct {
+	OverallRC	int	`json:"overallRC"`
+	ReturnCode	int	`json:"rc"`
+	Reason		int	`json:"rs"`
+	ErrorMsg	string	`json:"errmsg"`
+	ModuleId	int	`json:"modID"`
+	Output		string	`json:"output"`
+}
+
+func (c *Client) GetGuestPowerStateFromHypervisor(userid string) (*GetGuestPowerStateFromHypervisorResult, error) {
+	var result GetGuestPowerStateFromHypervisorResult
+
+	body, err := c.doRequest("GET", "/guests/" + userid + "/power_state_real", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-info
 
 type GetGuestInfoOutput struct {
