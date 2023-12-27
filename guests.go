@@ -191,7 +191,6 @@ func (c *Client) DeleteGuestDisks(userid string, params *DeleteGuestDisksParams)
 
 type ShowGuestDefinitionOutput struct {
 	UserDirect	[]string `json:"user_direct,omitempty"`
-	CheckInfo	[]string `json:"check_info,omitempty"`
 }
 
 type ShowGuestDefinitionResult struct {
@@ -283,6 +282,38 @@ func (c *Client) GetGuestInfo(userid string) (*GetGuestInfoResult, error) {
 	var result GetGuestInfoResult
 
 	body, err := c.doRequest("GET", "/guests/" + userid + "/info", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-user-direct
+
+type GetGuestUserDirectoryOutput struct {
+	UserDirect	[]string `json:"user_direct,omitempty"`
+}
+
+type GetGuestUserDirectoryResult struct {
+	OverallRC	int	`json:"overallRC"`
+	ReturnCode	int	`json:"rc"`
+	Reason		int	`json:"rs"`
+	ErrorMsg	string	`json:"errmsg"`
+	ModuleId	int	`json:"modID"`
+	Output		GetGuestUserDirectoryOutput `json:"output"`
+}
+
+func (c *Client) GetGuestUserDirectory(userid string) (*GetGuestUserDirectoryResult, error) {
+	var result GetGuestUserDirectoryResult
+
+	body, err := c.doRequest("GET", "/guests/" + userid + "/user_direct", nil)
 	if err != nil {
 		return nil, err
 	}

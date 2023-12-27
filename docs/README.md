@@ -30,7 +30,7 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.5.16 - `DeleteGuest()`
    * 7.5.17 - `GetGuestPowerStateFromHypervisor()`
    * 7.5.18 - `GetGuestInfo()`
-   * 7.5.19 - TODO
+   * 7.5.19 - `GetGuestUserDirectory()`
    * 7.5.20 - `GetGuestAdaptersInfo()`
    * 7.5.21 - `CreateGuestNIC()`
    * 7.5.22 - TODO
