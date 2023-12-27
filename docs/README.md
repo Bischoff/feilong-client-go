@@ -1,20 +1,6 @@
 # Documentation - Go Client Library for Feilong
 
 
-## Naming Conventions
-
-The following conventions are used both for function names and for input and output structures:
-
- * names use camel case, with no underscores: `user_profile` in Feilong JSON API becomes `UserProfile` in this Go library
- * acronyms are completly capitalized: `api_version` becomes `APIVersion`
- * abbreviations are sometimes completed, but never fully capitalized: `max_version` becomes `MaxVersion`, and `modID` becomes `ModuleId`
- * the Feilong name is not completely respected if it does not respect English grammar or is otherwise wrong: `GetGuestsList` becomes `GetGuestList`.
-
-The names differ quite significantly from the ones used in the Python library.
-
-Please refer to the individual definitions to know the exact names used in this library.
-
-
 ## Implemented Functions
 
 The numbers below refer to the section numbers in the [Feilong API documentation](https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html).
@@ -31,11 +17,24 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.5.3 - `AddGuestDisks()`
    * 7.5.4 - `ConfigureGuestDisks()`
    * 7.5.5 - `DeleteGuestDisks()`
+   * 7.5.6 - TODO
+   * 7.5.7 - TODO
+   * 7.5.8 - TODO
+   * 7.5.9 - TODO
+   * 7.5.10 - TODO
+   * 7.5.11 - TODO
+   * 7.5.12 - TODO
+   * 7.5.13 - TODO
+   * 7.5.14 - TODO
    * 7.5.15 - `ShowGuestDefinition()`
    * 7.5.16 - `DeleteGuest()`
+   * 7.5.17 - TODO
    * 7.5.18 - `GetGuestInfo()`
+   * 7.5.19 - TODO
    * 7.5.20 - `GetGuestAdaptersInfo()`
    * 7.5.21 - `CreateGuestNIC()`
+   * 7.5.22 - TODO
+   * 7.5.23 - TODO
    * 7.5.24 - `StartGuest()`
    * 7.5.25 - `StopGuest()`
    * 7.5.26 - `SoftStopGuest()`
@@ -44,6 +43,12 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.5.29 - `RebootGuest()`
    * 7.5.30 - `ResetGuest()`
    * 7.5.31 - `GetGuestConsoleOutput()`
+   * 7.5.32 - TODO
+   * 7.5.33 - TODO
+   * 7.5.34 - `DeregisterGuest()`
+   * 7.5.35 - `LiveResizeGuestCPUs()`
+   * 7.5.36 - `ResizeGuestCPUs()`
+   * 7.5.37 - `LiveResizeGuestMemory()`
    * 7.5.38 - `ResizeGuestMemory()`
    * 7.5.39 - `DeployGuest()`
    * 7.5.40 - `CaptureGuest()`

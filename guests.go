@@ -428,6 +428,78 @@ func (c *Client) GetGuestConsoleOutput(userid string) (*GetGuestConsoleOutputRes
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#guest-deregister
+
+func (c *Client) DeregisterGuest(userid string) error {
+	params := simpleAction { Action: "deregister_vm" }
+
+	return c.doAction(userid, &params)
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#live-resize-cpus-of-guest
+
+type LiveResizeGuestCPUsParams struct {
+	Action		string	`json:"action"`
+	CPUCount	int	`json:"cpu_cnt"`
+}
+
+func (c *Client) LiveResizeGuestCPUs(userid string, params *LiveResizeGuestCPUsParams) error {
+	params.Action = "live_resize_cpus"
+
+	body, err := json.Marshal(params)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
+
+	return err
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#resize-cpus-of-guest
+
+type ResizeGuestCPUsParams struct {
+	Action		string	`json:"action"`
+	CPUCount	int	`json:"cpu_cnt"`
+}
+
+func (c *Client) ResizeGuestCPUs(userid string, params *ResizeGuestCPUsParams) error {
+	params.Action = "resize_cpus"
+
+	body, err := json.Marshal(params)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
+
+	return err
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#live-resize-memory-of-guest
+
+type LiveResizeGuestMemoryParams struct {
+	Action		string	`json:"action"`
+	Size		string	`json:"size"`
+}
+
+func (c *Client) LiveResizeGuestMemory(userid string, params *LiveResizeGuestMemoryParams) error {
+	params.Action = "live_resize_mem"
+
+	body, err := json.Marshal(params)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
+
+	return err
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#resize-memory-of-guest
 
 type ResizeGuestMemoryParams struct {
