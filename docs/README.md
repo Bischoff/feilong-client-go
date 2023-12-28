@@ -33,8 +33,8 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.5.19 - `GetGuestUserDirectory()`
    * 7.5.20 - `GetGuestAdaptersInfo()`
    * 7.5.21 - `CreateGuestNIC()`
-   * 7.5.22 - TODO
-   * 7.5.23 - TODO
+   * 7.5.22 - `CreateGuestNetworkInterface()`
+   * 7.5.23 - `DeleteGuestNetworkInterface()`
    * 7.5.24 - `StartGuest()`
    * 7.5.25 - `StopGuest()`
    * 7.5.26 - `SoftStopGuest()`

@@ -390,6 +390,59 @@ func (c *Client) CreateGuestNIC(userid string, params *CreateGuestNICParams) err
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#create-network-interface
+
+type CreateGuestNetworkInterfaceDefinition struct {
+	IPAddress	string		`json:"ip_addr,omitempty"`
+	DNSAddresses	[]string	`json:"dns_addr,omitempty"`
+	GatewayAddress	string		`json:"gateway_addr,omitempty"`
+	CIDR		string		`json:"cidr,omitempty"`
+	NICVDev		string		`json:"nic_vdev,omitempty"`
+	MACAddress	string		`json:"mac_addr,omitempty"`
+	NICId		string		`json:"nic_id,omitempty"`
+	OSADevice	string		`json:"osa_device,omitempty"`
+}
+
+type CreateGuestNetworkInterfaceParams struct {
+	OSVersion	string		`json:"os_version"`
+	GuestNetworks	[]CreateGuestNetworkInterfaceDefinition `json:"guest_networks"`
+	Active		bool		`json:"active,omitempty"`
+}
+
+func (c *Client) CreateGuestNetworkInterface(userid string, params *CreateGuestNetworkInterfaceParams) error {
+	wrapper := createGuestNetworkInterfaceWrapper { Interface: *params }
+	body, err := json.Marshal(&wrapper)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/guests/" + userid + "/interface", body)
+
+	return err
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#delete-network-interface
+
+type DeleteGuestNetworkInterfaceParams struct {
+	OSVersion	string		`json:"os_version"`
+	VDev		string		`json:"vdev"`
+	Active		bool		`json:"active,omitempty"`
+}
+
+func (c *Client) DeleteGuestNetworkInterface(userid string, params *DeleteGuestNetworkInterfaceParams) error {
+	wrapper := deleteGuestNetworkInterfaceWrapper { Interface: *params }
+	body, err := json.Marshal(&wrapper)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("DELETE", "/guests/" + userid + "/interface", body)
+
+	return err
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#start-guest
 
 func (c *Client) StartGuest(userid string) error {
@@ -805,6 +858,14 @@ type deleteGuestDisksWrapper struct {
 
 type createGuestNICWrapper struct {
 	NIC		CreateGuestNICParams `json:"nic"`
+}
+
+type createGuestNetworkInterfaceWrapper struct {
+	Interface	CreateGuestNetworkInterfaceParams `json:"interface"`
+}
+
+type deleteGuestNetworkInterfaceWrapper struct {
+	Interface	DeleteGuestNetworkInterfaceParams `json:"interface"`
 }
 
 type updateGuestNICWrapper struct {
