@@ -43,7 +43,7 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.5.29 - `RebootGuest()`
    * 7.5.30 - `ResetGuest()`
    * 7.5.31 - `GetGuestConsoleOutput()`
-   * 7.5.32 - TODO
+   * 7.5.32 - `LiveMigrateGuest()`
    * 7.5.33 - TODO
    * 7.5.34 - `DeregisterGuest()`
    * 7.5.35 - `LiveResizeGuestCPUs()`

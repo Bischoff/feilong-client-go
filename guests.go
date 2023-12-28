@@ -487,6 +487,36 @@ func (c *Client) GetGuestConsoleOutput(userid string) (*GetGuestConsoleOutputRes
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#live-migration-of-guest
+
+type LiveMigrateGuestOptions struct {
+	MaxTotal	int	`json:"maxtotal,omitempty"`
+	MaxQuiesce	int	`json:"maxquiesce,omitempty"`
+	Immediate	string	`json:"immediate,omitempty"`
+}
+
+type LiveMigrateGuestParams struct {
+	Action		string	`json:"action"`
+	DestUserId	string	`json:"dest_zcc_userid,omitempty"`
+	Destination	string	`json:"destination"`
+	Options		LiveMigrateGuestOptions `json:"parms,omitempty"`
+	MigrationAction	string	`json:"lgr_action"`
+}
+
+func (c *Client) LiveMigrateGuest(userid string, params *LiveMigrateGuestParams) error {
+	params.Action = "live_migrate_vm"
+
+	body, err := json.Marshal(params)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
+
+	return err
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#guest-deregister
 
 func (c *Client) DeregisterGuest(userid string) error {
