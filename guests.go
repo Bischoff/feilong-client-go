@@ -13,23 +13,23 @@ import (
 // Common structures
 
 type GuestDisk struct {
-	Size		string	`json:"size"`
-	Format		string	`json:"format,omitempty"`
-	IsBootDisk	bool	`json:"is_boot_disk,omitempty"`
-	VDev 		string	`json:"vdev,omitempty"`
-	DiskPool	string	`json:"disk_pool,omitempty"`
+	Size		string		`json:"size"`
+	Format		string		`json:"format,omitempty"`
+	IsBootDisk	bool		`json:"is_boot_disk,omitempty"`
+	VDev		string		`json:"vdev,omitempty"`
+	DiskPool	string		`json:"disk_pool,omitempty"`
 }
 
 
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#list-guests
 
 type ListGuestsResult struct {
-	OverallRC	int	`json:"overallRC"`
-	ReturnCode	int	`json:"rc"`
-	Reason		int	`json:"rs"`
-	ErrorMsg	string	`json:"errmsg"`
-	ModuleId	int	`json:"modID"`
-	Output		[]string `json:"output"`
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
+	Output		[]string	`json:"output"`
 }
 
 func (c *Client) ListGuests() (*ListGuestsResult, error) {
@@ -52,34 +52,34 @@ func (c *Client) ListGuests() (*ListGuestsResult, error) {
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#create-guest
 
 type CreateDiskLoadDev struct {
-	PortName	string	`json:"portname,omitempty"`
-	LUN		string	`json:"lun,omitempty"`
+	PortName	string		`json:"portname,omitempty"`
+	LUN		string		`json:"lun,omitempty"`
 }
 
 type CreateGuestParams struct {
-	UserId		string	`json:"userid"`
-	VCPUs		int	`json:"vcpus"`
-	Memory		int	`json:"memory"`
-	UserProfile	string	`json:"user_profile,omitempty"`
-	DiskList	[]GuestDisk `json:"disk_list,omitempty"`
-	MaxCPU		int	`json:"max_cpu,omitempty"`
-	MaxMem		string	`json:"max_mem,omitempty"`
-	IPLFrom		string	`json:"ipl_from,omitempty"`
-	IPLParam	string	`json:"ipl_param,omitempty"`
-	IPLLoadParam	string	`json:"ipl_loadparam,omitempty"`
-	DedicateVDevs	[]string `json:"dedicate_vdevs,omitempty"`
+	UserId		string		`json:"userid"`
+	VCPUs		int		`json:"vcpus"`
+	Memory		int		`json:"memory"`
+	UserProfile	string		`json:"user_profile,omitempty"`
+	DiskList	[]GuestDisk	`json:"disk_list,omitempty"`
+	MaxCPU		int		`json:"max_cpu,omitempty"`
+	MaxMem		string		`json:"max_mem,omitempty"`
+	IPLFrom		string		`json:"ipl_from,omitempty"`
+	IPLParam	string		`json:"ipl_param,omitempty"`
+	IPLLoadParam	string		`json:"ipl_loadparam,omitempty"`
+	DedicateVDevs	[]string	`json:"dedicate_vdevs,omitempty"`
 	LoadDev		CreateDiskLoadDev `json:"loaddev,omitempty"`
-	Account		string	`json:"account,omitempty"`
-	CommentList	[]string `json:"comment_list,omitempty"`
+	Account		string		`json:"account,omitempty"`
+	CommentList	[]string	`json:"comment_list,omitempty"`
 }
 
 type CreateGuestResult struct {
-	OverallRC	int	`json:"overallRC"`
-	ReturnCode	int	`json:"rc"`
-	Reason		int	`json:"rs"`
-	ErrorMsg	string	`json:"errmsg"`
-	ModuleId	int	`json:"modID"`
-	Output		[]GuestDisk `json:"output"`
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
+	Output		[]GuestDisk	`json:"output"`
 }
 
 func (c *Client) CreateGuest(params *CreateGuestParams) (*CreateGuestResult, error) {
@@ -108,16 +108,16 @@ func (c *Client) CreateGuest(params *CreateGuestParams) (*CreateGuestResult, err
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#guest-add-disks
 
 type AddGuestDisksParams struct {
-	DiskList	[]GuestDisk `json:"disk_list,omitempty"`
+	DiskList	[]GuestDisk	`json:"disk_list,omitempty"`
 }
 
 type AddGuestDisksResult struct {
-	OverallRC	int	`json:"overallRC"`
-	ReturnCode	int	`json:"rc"`
-	Reason		int	`json:"rs"`
-	ErrorMsg	string	`json:"errmsg"`
-	ModuleId	int	`json:"modID"`
-	Output		[]GuestDisk `json:"output"`
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
+	Output		[]GuestDisk	`json:"output"`
 }
 
 func (c *Client) AddGuestDisks(userid string, params *AddGuestDisksParams) (*AddGuestDisksResult, error) {
@@ -146,9 +146,9 @@ func (c *Client) AddGuestDisks(userid string, params *AddGuestDisksParams) (*Add
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#guest-configure-disks
 
 type ConfigureGuestDisk struct {
-	VDev		string	`json:"vdev,omitempty"`
-	Format		string	`json:"format"`
-	MountDirectory	string	`json:"mntdir,omitempty"`
+	VDev		string		`json:"vdev,omitempty"`
+	Format		string		`json:"format"`
+	MountDirectory	string		`json:"mntdir,omitempty"`
 }
 
 type ConfigureGuestDisksParams struct {
@@ -171,7 +171,7 @@ func (c *Client) ConfigureGuestDisks(userid string, params *ConfigureGuestDisksP
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#guest-delete-disks
 
 type DeleteGuestDisksParams struct {
-	VDevList	[]string `json:"vdev_list,omitempty"`
+	VDevList	[]string	`json:"vdev_list,omitempty"`
 }
 
 func (c *Client) DeleteGuestDisks(userid string, params *DeleteGuestDisksParams) error {
@@ -190,15 +190,15 @@ func (c *Client) DeleteGuestDisks(userid string, params *DeleteGuestDisksParams)
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#show-guest-definition
 
 type ShowGuestDefinitionOutput struct {
-	UserDirect	[]string `json:"user_direct,omitempty"`
+	UserDirect	[]string	`json:"user_direct,omitempty"`
 }
 
 type ShowGuestDefinitionResult struct {
-	OverallRC	int	`json:"overallRC"`
-	ReturnCode	int	`json:"rc"`
-	Reason		int	`json:"rs"`
-	ErrorMsg	string	`json:"errmsg"`
-	ModuleId	int	`json:"modID"`
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
 	Output		ShowGuestDefinitionOutput `json:"output"`
 }
 
@@ -231,12 +231,12 @@ func (c *Client) DeleteGuest(userid string) error {
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-power-state-from-hypervisor
 
 type GetGuestPowerStateFromHypervisorResult struct {
-	OverallRC	int	`json:"overallRC"`
-	ReturnCode	int	`json:"rc"`
-	Reason		int	`json:"rs"`
-	ErrorMsg	string	`json:"errmsg"`
-	ModuleId	int	`json:"modID"`
-	Output		string	`json:"output"`
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
+	Output		string		`json:"output"`
 }
 
 func (c *Client) GetGuestPowerStateFromHypervisor(userid string) (*GetGuestPowerStateFromHypervisorResult, error) {
@@ -259,22 +259,22 @@ func (c *Client) GetGuestPowerStateFromHypervisor(userid string) (*GetGuestPower
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-info
 
 type GetGuestInfoOutput struct {
-	MaxMemKB	int	`json:"max_mem_kb"`
-	NumCPUs		int	`json:"num_cpu"`
-	CPUTimeMuSec	int	`json:"cpu_time_us"`
-	PowerState	string	`json:"power_state"`
-	MemKB		int	`json:"mem_kb"`
-	OnlineCPUNum	int	`json:"online_cpu_num"`
-	OSDistro	string	`json:"os_distro"`
-	KernelInfo	string	`json:"kernel_info"`
+	MaxMemKB	int		`json:"max_mem_kb"`
+	NumCPUs		int		`json:"num_cpu"`
+	CPUTimeMuSec	int		`json:"cpu_time_us"`
+	PowerState	string		`json:"power_state"`
+	MemKB		int		`json:"mem_kb"`
+	OnlineCPUNum	int		`json:"online_cpu_num"`
+	OSDistro	string		`json:"os_distro"`
+	KernelInfo	string		`json:"kernel_info"`
 }
 
 type GetGuestInfoResult struct {
-	OverallRC	int	`json:"overallRC"`
-	ReturnCode	int	`json:"rc"`
-	Reason		int	`json:"rs"`
-	ErrorMsg	string	`json:"errmsg"`
-	ModuleId	int	`json:"modID"`
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
 	Output		GetGuestInfoOutput `json:"output"`
 }
 
@@ -298,15 +298,15 @@ func (c *Client) GetGuestInfo(userid string) (*GetGuestInfoResult, error) {
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-user-direct
 
 type GetGuestUserDirectoryOutput struct {
-	UserDirect	[]string `json:"user_direct,omitempty"`
+	UserDirect	[]string	`json:"user_direct,omitempty"`
 }
 
 type GetGuestUserDirectoryResult struct {
-	OverallRC	int	`json:"overallRC"`
-	ReturnCode	int	`json:"rc"`
-	Reason		int	`json:"rs"`
-	ErrorMsg	string	`json:"errmsg"`
-	ModuleId	int	`json:"modID"`
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
 	Output		GetGuestUserDirectoryOutput `json:"output"`
 }
 
@@ -330,13 +330,13 @@ func (c *Client) GetGuestUserDirectory(userid string) (*GetGuestUserDirectoryRes
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-adapters-info
 
 type GetGuestAdaptersInfoAdapter struct {
-	LANOwner	string	`json:"lan_owner"`
-	LANName		string	`json:"lan_name"`
-	AdapterAddress	string	`json:"adapter_address,omitempty"`
-	AdapterStatus	string	`json:"adapter_status"`
-	MACAddress	string	`json:"mac_address,omitempty"`
-	IPAddress	string	`json:"mac_ip_address,omitempty"`
-	IPVersion	string	`json:"mac_ip_version"`
+	LANOwner	string		`json:"lan_owner"`
+	LANName		string		`json:"lan_name"`
+	AdapterAddress	string		`json:"adapter_address,omitempty"`
+	AdapterStatus	string		`json:"adapter_status"`
+	MACAddress	string		`json:"mac_address,omitempty"`
+	IPAddress	string		`json:"mac_ip_address,omitempty"`
+	IPVersion	string		`json:"mac_ip_version"`
 }
 
 type GetGuestAdaptersInfoOutput struct {
@@ -344,11 +344,11 @@ type GetGuestAdaptersInfoOutput struct {
 }
 
 type GetGuestAdaptersInfoResult struct {
-	OverallRC	int	`json:"overallRC"`
-	ReturnCode	int	`json:"rc"`
-	Reason		int	`json:"rs"`
-	ErrorMsg	string	`json:"errmsg"`
-	ModuleId	int	`json:"modID"`
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
 	Output		GetGuestAdaptersInfoOutput `json:"output"`
 }
 
@@ -456,12 +456,12 @@ func (c *Client) ResetGuest(userid string) error {
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-console-output
 
 type GetGuestConsoleOutputResult struct {
-	OverallRC	int	`json:"overallRC"`
-	ReturnCode	int	`json:"rc"`
-	Reason		int	`json:"rs"`
-	ErrorMsg	string	`json:"errmsg"`
-	ModuleId	int	`json:"modID"`
-	Output		[]string `json:"output"`
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
+	Output		[]string	`json:"output"`
 }
 
 func (c *Client) GetGuestConsoleOutput(userid string) (*GetGuestConsoleOutputResult, error) {
@@ -490,21 +490,44 @@ func (c *Client) GetGuestConsoleOutput(userid string) (*GetGuestConsoleOutputRes
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#live-migration-of-guest
 
 type LiveMigrateGuestOptions struct {
-	MaxTotal	int	`json:"maxtotal,omitempty"`
-	MaxQuiesce	int	`json:"maxquiesce,omitempty"`
-	Immediate	string	`json:"immediate,omitempty"`
+	MaxTotal	int		`json:"maxtotal,omitempty"`
+	MaxQuiesce	int		`json:"maxquiesce,omitempty"`
+	Immediate	string		`json:"immediate,omitempty"`
 }
 
 type LiveMigrateGuestParams struct {
-	Action		string	`json:"action"`
-	DestUserId	string	`json:"dest_zcc_userid,omitempty"`
-	Destination	string	`json:"destination"`
+	Action		string		`json:"action"`
+	DestUserId	string		`json:"dest_zcc_userid,omitempty"`
+	Destination	string		`json:"destination"`
 	Options		LiveMigrateGuestOptions `json:"parms,omitempty"`
-	MigrationAction	string	`json:"lgr_action"`
+	MigrationAction	string		`json:"lgr_action"`
 }
 
 func (c *Client) LiveMigrateGuest(userid string, params *LiveMigrateGuestParams) error {
 	params.Action = "live_migrate_vm"
+
+	body, err := json.Marshal(params)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/guests/" + userid + "/action", body)
+
+	return err
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#guest-register
+
+type RegisterGuestParams struct {
+	Action		string		`json:"action"`
+	Meta		string		`json:"meta"`
+	NetSet		string		`json:"net_set"`
+	Port		map[string]string `json:"port"`
+}
+
+func (c *Client) RegisterGuest(userid string, params *RegisterGuestParams) error {
+	params.Action = "register_vm"
 
 	body, err := json.Marshal(params)
 	if err != nil {
@@ -529,8 +552,8 @@ func (c *Client) DeregisterGuest(userid string) error {
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#live-resize-cpus-of-guest
 
 type LiveResizeGuestCPUsParams struct {
-	Action		string	`json:"action"`
-	CPUCount	int	`json:"cpu_cnt"`
+	Action		string		`json:"action"`
+	CPUCount	int		`json:"cpu_cnt"`
 }
 
 func (c *Client) LiveResizeGuestCPUs(userid string, params *LiveResizeGuestCPUsParams) error {
@@ -550,8 +573,8 @@ func (c *Client) LiveResizeGuestCPUs(userid string, params *LiveResizeGuestCPUsP
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#resize-cpus-of-guest
 
 type ResizeGuestCPUsParams struct {
-	Action		string	`json:"action"`
-	CPUCount	int	`json:"cpu_cnt"`
+	Action		string		`json:"action"`
+	CPUCount	int		`json:"cpu_cnt"`
 }
 
 func (c *Client) ResizeGuestCPUs(userid string, params *ResizeGuestCPUsParams) error {
@@ -571,8 +594,8 @@ func (c *Client) ResizeGuestCPUs(userid string, params *ResizeGuestCPUsParams) e
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#live-resize-memory-of-guest
 
 type LiveResizeGuestMemoryParams struct {
-	Action		string	`json:"action"`
-	Size		string	`json:"size"`
+	Action		string		`json:"action"`
+	Size		string		`json:"size"`
 }
 
 func (c *Client) LiveResizeGuestMemory(userid string, params *LiveResizeGuestMemoryParams) error {
@@ -592,8 +615,8 @@ func (c *Client) LiveResizeGuestMemory(userid string, params *LiveResizeGuestMem
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#resize-memory-of-guest
 
 type ResizeGuestMemoryParams struct {
-	Action		string	`json:"action"`
-	Size		string	`json:"size"`
+	Action		string		`json:"action"`
+	Size		string		`json:"size"`
 }
 
 func (c *Client) ResizeGuestMemory(userid string, params *ResizeGuestMemoryParams) error {
@@ -613,13 +636,13 @@ func (c *Client) ResizeGuestMemory(userid string, params *ResizeGuestMemoryParam
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#deploy-guest
 
 type DeployGuestParams struct {
-	Action		string	`json:"action"`
-	Image		string	`json:"image"`
-	TransportFiles	string	`json:"transportfiles,omitempty"`
-	RemoteHost	string	`json:"remotehost,omitempty"`
-	VDev		string	`json:"vdev,omitempty"`
-	Hostname	string	`json:"hostname,omitempty"`
-	SkipDiskCopy	bool	`json:"skipdiskcopy,omitempty"`
+	Action		string		`json:"action"`
+	Image		string		`json:"image"`
+	TransportFiles	string		`json:"transportfiles,omitempty"`
+	RemoteHost	string		`json:"remotehost,omitempty"`
+	VDev		string		`json:"vdev,omitempty"`
+	Hostname	string		`json:"hostname,omitempty"`
+	SkipDiskCopy	bool		`json:"skipdiskcopy,omitempty"`
 }
 
 func (c *Client) DeployGuest(userid string, params *DeployGuestParams) error {
@@ -639,10 +662,10 @@ func (c *Client) DeployGuest(userid string, params *DeployGuestParams) error {
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#capture-guest
 
 type CaptureGuestParams struct {
-	Action		string	`json:"action"`
-	Image		string	`json:"image"`
-	CaptureType	string	`json:"capture_type,omitempty"`
-	CompressLevel	int	`json:"compress_level,omitempty"`
+	Action		string		`json:"action"`
+	Image		string		`json:"image"`
+	CaptureType	string		`json:"capture_type,omitempty"`
+	CompressLevel	int		`json:"compress_level,omitempty"`
 }
 
 func (c *Client) CaptureGuest(userid string, params *CaptureGuestParams) error {
@@ -662,8 +685,8 @@ func (c *Client) CaptureGuest(userid string, params *CaptureGuestParams) error {
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#grow-root-volume-of-guest
 
 type GrowGuestRootVolumeParams struct {
-	Action		string	`json:"action"`
-	OSVersion	string	`json:"os_version"`
+	Action		string		`json:"action"`
+	OSVersion	string		`json:"os_version"`
 }
 
 func (c *Client) GrowGuestRootVolume(userid string, params *GrowGuestRootVolumeParams) error {
@@ -683,12 +706,12 @@ func (c *Client) GrowGuestRootVolume(userid string, params *GrowGuestRootVolumeP
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-power-state
 
 type GetGuestPowerStateResult struct {
-	OverallRC	int	`json:"overallRC"`
-	ReturnCode	int	`json:"rc"`
-	Reason		int	`json:"rs"`
-	ErrorMsg	string	`json:"errmsg"`
-	ModuleId	int	`json:"modID"`
-	Output		string	`json:"output"`
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
+	Output		string		`json:"output"`
 }
 
 func (c *Client) GetGuestPowerState(userid string) (*GetGuestPowerStateResult, error) {
@@ -711,9 +734,9 @@ func (c *Client) GetGuestPowerState(userid string) (*GetGuestPowerStateResult, e
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#update-guest-nic
 
 type UpdateGuestNICParams struct {
-	Couple		bool	`json:"couple"`
-	Active		bool	`json:"active,omitempty"`
-	VSwitch		string	`json:"vswitch,omitempty"`
+	Couple		bool		`json:"couple"`
+	Active		bool		`json:"active,omitempty"`
+	VSwitch		string		`json:"vswitch,omitempty"`
 }
 
 func (c *Client) UpdateGuestNIC(userid string, vdev string, params *UpdateGuestNICParams) error {
@@ -732,7 +755,7 @@ func (c *Client) UpdateGuestNIC(userid string, vdev string, params *UpdateGuestN
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#delete-guest-nic
 
 type DeleteGuestNICParams struct {
-	Active		bool `json:"active,omitempty"`
+	Active		bool		`json:"active,omitempty"`
 }
 
 func (c *Client) DeleteGuestNIC(userid string, vdev string, params *DeleteGuestNICParams) error {
@@ -750,7 +773,7 @@ func (c *Client) DeleteGuestNIC(userid string, vdev string, params *DeleteGuestN
 // For internal use
 
 type simpleAction struct {
-	Action		string	`json:"action"`
+	Action		string		`json:"action"`
 }
 
 func (c *Client) doAction(userid string, params *simpleAction) error {
