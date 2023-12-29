@@ -30,14 +30,18 @@ func main() {
 		}
 	}
 
-	if len(os.Args) != 2 {
-		fmt.Println("Please specify guest userid")
-		return
-	}
-	userid := os.Args[1]
-
-	err := client.RebootGuest(userid)
+	result, err := client.GetGuestsNICInfo(nil, nil, nil)
 	if err != nil {
 		fmt.Println(err.Error())
+		return
+	}
+
+	fmt.Printf("Information about NICs:\n\n")
+	for _, entry := range result.Output {
+		fmt.Printf("UserId: %s\n", entry.UserId)
+		fmt.Printf("Interface: %s\n", entry.Interface)
+		fmt.Printf("VSwitch: %s\n", entry.VSwitch)
+		fmt.Printf("Port: %s\n", entry.Port)
+		fmt.Printf("Comments: %s\n\n", entry.Comments)
 	}
 }

@@ -1,5 +1,7 @@
 ## Feilong Go Client Library Examples
 
+The examples provided [here](snippets/) do only queries: they do not create, modify, nor delete resources. They can therefore safely be used in production environments.
+
 
 ### How to Compile the Examples
 

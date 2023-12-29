@@ -187,6 +187,56 @@ func (c *Client) DeleteGuestDisks(userid string, params *DeleteGuestDisksParams)
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guests-nic-info
+
+type GetGuestsNICInfo struct {
+	UserId		string		`json:"userid"`
+	Interface	string		`json:"interface"`
+	VSwitch		string		`json:"switch"`
+	Port		string		`json:"port"`
+	Comments	string		`json:"comments"`
+}
+
+type GetGuestsNICInfoResult struct {
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
+	Output		[]GetGuestsNICInfo `json:"output"`
+}
+
+func (c *Client) GetGuestsNICInfo(userid *string, nicid *string, vswitch *string) (*GetGuestsNICInfoResult, error) {
+	var result GetGuestsNICInfoResult
+
+	req := "/guests/nics"
+	sep := "?"
+	if userid != nil {
+		req = req + sep + "userid=" + *userid
+		sep = "&"
+	}
+	if nicid != nil {
+		req = req + sep + "nic_id=" + *nicid
+		sep = "&"
+	}
+	if vswitch != nil {
+		req = req + sep + "vswitch=" + *vswitch
+	}
+
+	body, err := c.doRequest("GET", req, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#show-guest-definition
 
 type ShowGuestDefinitionOutput struct {

@@ -37,19 +37,22 @@ func main() {
 }
 ```
 
-For more examples, look in [snippets](examples/snippets/) directory.
+For more examples, look at the [examples](examples/README.md) directory.
 
 For an overview of all the functions, see the [documentation](docs/README.md).
 
 
-## Completeness
+## Compliance
 
-The library implements the [Feilong API](https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#) version 1.0.
+The library implements the [Feilong API](https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#) version 1.0. It has been tested to work with Feilong server version 1.6.7.
+
+
+## To Do
 
 The following are not implemented yet:
 
  * acceptance tests
- * more documentation
+ * detailed documentation
  * some of the API functions.
 
 
