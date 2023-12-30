@@ -23,7 +23,7 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.5.9 - TODO
    * 7.5.10 - TODO
    * 7.5.11 - TODO
-   * 7.5.12 - TODO
+   * 7.5.12 - `GetGuestsStats()`
    * 7.5.13 - `GetGuestsInterfaceStats()`
    * 7.5.14 - `GetGuestsNICInfo()`
    * 7.5.15 - `ShowGuestDefinition()`

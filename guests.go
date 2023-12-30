@@ -187,10 +187,55 @@ func (c *Client) DeleteGuestDisks(userid string, params *DeleteGuestDisksParams)
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guests-stats-including-cpu-and-memory
+
+type GetGuestsStats struct {
+	GuestCPUs	int		`json:"guest_cpus"`
+	UsedCPUTime	int		`json:"used_cpu_time_us"`
+	ElapsedCPUTime	int		`json:"elapsed_cpu_time_us"`
+	MinCPUCount	int		`json:"min_cpu_count"`
+	MaxCPULimit	int		`json:"max_cpu_limit"`
+	SamplesCPUInUse	int		`json:"samples_cpu_in_use"`
+	SamplesCPUDelay	int		`json:"samples_cpu_delay"`
+	UsedMemoryKB	int		`json:"used_mem_kb"`
+	MaxMemoryKB	int		`json:"max_mem_kb"`
+	MinMemoryKB	int		`json:"min_mem_kb"`
+	SharedMemoryKB	int		`json:"shared_mem_kb"`
+	TotalMemory	int		`json:"total_memory"`
+	AvailableMemory	int		`json:"available_memory"`
+	FreeMemory	int		`json:"free_memory"`
+}
+
+type GetGuestsStatsResult struct {
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
+	Output		map[string]GetGuestsStats `json:"output"`
+}
+
+func (c *Client) GetGuestsStats(userid string) (*GetGuestsStatsResult, error) {
+	var result GetGuestsStatsResult
+
+	body, err := c.doRequest("GET", "/guests/stats?userid=" + userid, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guests-interface-stats
 
 type GetGuestsInterfaceStats struct {
-	VSwitch		string		`json:"vswitch_name"`
+	VSwitch		string		`json:"vswitch_name,omitempty"`
 	VDev		string		`json:"nic_vdev"`
 	FramesRec	int		`json:"nic_fr_rx"`
 	FramesSent	int		`json:"nic_fr_tx"`
