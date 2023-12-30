@@ -187,6 +187,47 @@ func (c *Client) DeleteGuestDisks(userid string, params *DeleteGuestDisksParams)
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guests-interface-stats
+
+type GetGuestsInterfaceStats struct {
+	VSwitch		string		`json:"vswitch_name"`
+	VDev		string		`json:"nic_vdev"`
+	FramesRec	int		`json:"nic_fr_rx"`
+	FramesSent	int		`json:"nic_fr_tx"`
+	FramesRecDisc	int		`json:"nic_fr_rx_dsc"`
+	FramesSentDisc	int		`json:"nic_fr_tx_dsc"`
+	FramesRecErr	int		`json:"nic_fr_rx_err"`
+	FramesSentErr	int		`json:"nic_fr_tx_err"`
+	BytesRec	int		`json:"nic_rx"`
+	BytesSent	int		`json:"nic_tx"`
+}
+
+type GetGuestsInterfaceStatsResult struct {
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
+	Output		map[string][]GetGuestsInterfaceStats `json:"output"`
+}
+
+func (c *Client) GetGuestsInterfaceStats(userid string) (*GetGuestsInterfaceStatsResult, error) {
+	var result GetGuestsInterfaceStatsResult
+
+	body, err := c.doRequest("GET", "/guests/interfacestats?userid=" + userid, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guests-nic-info
 
 type GetGuestsNICInfo struct {
