@@ -187,6 +187,62 @@ func (c *Client) DeleteGuestDisks(userid string, params *DeleteGuestDisksParams)
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#attach-volume
+
+type AttachGuestVolumeParams struct {
+	AssignerId	string		`json:"assigner_id"`
+	FCPList		[]string	`json:"zvm_fcp"`
+	FCPTemplateId	string		`json:"fcp_template_id"`
+	TargetWWPN	[]string	`json:"target_wwpn"`
+	TargetLUN	string		`json:"target_lun"`
+	OSVersion	string		`json:"os_version"`
+	Multipath	bool		`json:"multipath"`
+	MountPoint	string		`json:"mount_point,omitempty"`
+	IsRootVolume	bool		`json:"is_root_volume,omitempty"`
+}
+
+func (c *Client) AttachGuestVolume(params *AttachGuestVolumeParams) error {
+	wrapper2 := attachGuestVolumeWrapper2 { Connection: *params }
+	wrapper := attachGuestVolumeWrapper { Info: wrapper2 }
+	body, err := json.Marshal(&wrapper)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/guests/volumes", body)
+
+	return err
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#detach-volume
+
+type DetachGuestVolumeParams struct {
+	AssignerId	string		`json:"assigner_id"`
+	FCPList		[]string	`json:"zvm_fcp"`
+	FCPTemplateId	string		`json:"fcp_template_id"`
+	TargetWWPN	[]string	`json:"target_wwpn"`
+	TargetLUN	string		`json:"target_lun"`
+	OSVersion	string		`json:"os_version"`
+	Multipath	bool		`json:"multipath"`
+	MountPoint	string		`json:"mount_point,omitempty"`
+	IsRootVolume	bool		`json:"is_root_volume,omitempty"`
+}
+
+func (c *Client) DetachGuestVolume(params *DetachGuestVolumeParams) error {
+	wrapper2 := detachGuestVolumeWrapper2 { Connection: *params }
+	wrapper := detachGuestVolumeWrapper { Info: wrapper2 }
+	body, err := json.Marshal(&wrapper)
+	if err != nil {
+		return err
+	}
+
+	_, err = c.doRequest("POST", "/guests/volumes", body)
+
+	return err
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guests-stats-including-cpu-and-memory
 
 type GetGuestsStats struct {
@@ -990,6 +1046,22 @@ type configureGuestDisksWrapper struct {
 
 type deleteGuestDisksWrapper struct {
 	VDevInfo	DeleteGuestDisksParams `json:"vdev_info"`
+}
+
+type attachGuestVolumeWrapper2 struct {
+	Connection	AttachGuestVolumeParams `json:"connection"`
+}
+
+type attachGuestVolumeWrapper struct {
+	Info		attachGuestVolumeWrapper2 `json:"info"`
+}
+
+type detachGuestVolumeWrapper2 struct {
+	Connection	DetachGuestVolumeParams `json:"connection"`
+}
+
+type detachGuestVolumeWrapper struct {
+	Info		detachGuestVolumeWrapper2 `json:"info"`
 }
 
 type createGuestNICWrapper struct {

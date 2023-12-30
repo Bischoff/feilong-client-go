@@ -17,8 +17,8 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.5.3 - `AddGuestDisks()`
    * 7.5.4 - `ConfigureGuestDisks()`
    * 7.5.5 - `DeleteGuestDisks()`
-   * 7.5.6 - TODO
-   * 7.5.7 - TODO
+   * 7.5.6 - `AttachGuestVolume()`
+   * 7.5.7 - `DetachGuestVolume()`
    * 7.5.8 - TODO
    * 7.5.9 - TODO
    * 7.5.10 - TODO
