@@ -49,11 +49,14 @@ The library implements the [Feilong API](https://cloudlib4zvm.readthedocs.io/en/
 
 ## To Do
 
-The following are not implemented yet:
+The following are not done yet:
 
- * acceptance tests
  * detailed documentation
- * some of the API functions.
+ * acceptance tests
+
+Also, volume operations are probably not sufficiently tested because of missing opportunities to test it.
+
+Your help is welcome!
 
 
 ## License

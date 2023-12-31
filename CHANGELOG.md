@@ -1,4 +1,11 @@
-## 0.0.6 - Unreleased
+## 0.1.1 - Unreleased
+
+
+## 0.1.0 - 2023-12-31
+
+FEATURES:
+ * last initial functions
+ * last initial examples
 
 
 ## 0.0.5 - 2023-12-24

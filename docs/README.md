@@ -19,10 +19,6 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.5.5 - `DeleteGuestDisks()`
    * 7.5.6 - `AttachGuestVolume()`
    * 7.5.7 - `DetachGuestVolume()`
-   * 7.5.8 - TODO
-   * 7.5.9 - TODO
-   * 7.5.10 - TODO
-   * 7.5.11 - TODO
    * 7.5.12 - `GetGuestsStats()`
    * 7.5.13 - `GetGuestsInterfaceStats()`
    * 7.5.14 - `GetGuestsNICInfo()`
@@ -56,6 +52,11 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.5.42 - `GetGuestPowerState()`
    * 7.5.43 - `UpdateGuestNIC()`
    * 7.5.44 - `DeleteGuestNIC()`
+ * 7.5 - [Volumes](https://github.com/Bischoff/feilong-client-go/blob/main/volumes.go)
+   * 7.5.8 - `RefreshVolumeBootmapInfo()`
+   * 7.5.9 - `GetVolumeConnector()`
+   * 7.5.10 - `GetVolumeFCPUsage()`
+   * 7.5.11 - `SetVolumeFCPUsage()`
  * 7.6 - [Host](https://github.com/Bischoff/feilong-client-go/blob/main/host.go)
    * 7.6.1 - `GetHostGuestList()`
    * 7.6.2 - `GetHostInfo()`
