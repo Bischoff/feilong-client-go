@@ -1,5 +1,8 @@
 ## 0.1.1 - Unreleased
 
+BUGS:
+ * fix guest stats structure name
+
 
 ## 0.1.0 - 2023-12-31
 

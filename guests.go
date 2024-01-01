@@ -235,7 +235,7 @@ func (c *Client) DetachGuestVolume(params *DetachGuestVolumeParams) error {
 
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guests-stats-including-cpu-and-memory
 
-type GetGuestsStats struct {
+type GetGuestsStatsDetails struct {
 	GuestCPUs	int		`json:"guest_cpus"`
 	UsedCPUTime	int		`json:"used_cpu_time_us"`
 	ElapsedCPUTime	int		`json:"elapsed_cpu_time_us"`
@@ -258,7 +258,7 @@ type GetGuestsStatsResult struct {
 	Reason		int		`json:"rs"`
 	ErrorMsg	string		`json:"errmsg"`
 	ModuleId	int		`json:"modID"`
-	Output		map[string]GetGuestsStats `json:"output"`
+	Output		map[string]GetGuestsStatsDetails `json:"output"`
 }
 
 func (c *Client) GetGuestsStats(userid string) (*GetGuestsStatsResult, error) {
