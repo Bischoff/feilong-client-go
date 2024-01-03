@@ -36,22 +36,18 @@ func main() {
 	}
 	userid := os.Args[1]
 
-	volumeConnectorParams := feilong.GetVolumeConnectorParams {
-		Reserve: true,
-		FCPTemplateId: "fake_id",
-	}
-	result, err := client.GetVolumeConnector(userid, &volumeConnectorParams)
+	result, err := client.GetGuestMinidisksInfo(userid)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
 
-	fmt.Printf("Connection info for %s:\n", userid)
-	for _, fcp := range result.Output.FCP {
-		fmt.Printf("  FCP: %s\n", fcp)
+	for _, s := range result.Output.Minidisks {
+		fmt.Printf("VDev: %s\n", s.VDev)
+		fmt.Printf("RDev: %s\n", s.RDev)
+		fmt.Printf("Access type: %s\n", s.AccessType)
+		fmt.Printf("Device type: %s\n", s.DeviceType)
+		fmt.Printf("Device size: %d %s\n", s.DeviceSize, s.DeviceUnits)
+		fmt.Printf("Volume label: %s\n\n", s.VolumeLabel)
 	}
-	for _, wwpn := range result.Output.WWPNs {
-		fmt.Printf("  WWPN: %s\n", wwpn)
-	}
-	fmt.Printf("  Host: %s\n", result.Output.Host)
 }

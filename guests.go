@@ -994,6 +994,48 @@ func (c *Client) DeleteGuestNIC(userid string, vdev string, params *DeleteGuestN
 }
 
 
+// New method, see https://github.com/openmainframeproject/feilong/issues/796
+
+type GetGuestMinidisksInfoMinidisk struct {
+	VDev		string		`json:"vdev"`
+	RDev		string		`json:"rdev"`
+	AccessType	string		`json:"access_type"`
+	DeviceType	string		`json:"device_type"`
+	DeviceSize	int		`json:"device_size"`
+	DeviceUnits	string		`json:"device_units"`
+	VolumeLabel	string		`json:"volume_label"`
+}
+
+type GetGuestMinidisksInfoOutput struct {
+	Minidisks	[]GetGuestMinidisksInfoMinidisk `json:"minidisks,omitempty"`
+}
+
+type GetGuestMinidisksInfoResult struct {
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
+	Output		GetGuestMinidisksInfoOutput `json:"output"`
+}
+
+func (c *Client) GetGuestMinidisksInfo(userid string) (*GetGuestMinidisksInfoResult, error) {
+	var result GetGuestMinidisksInfoResult
+
+	body, err := c.doRequest("GET", "/guests/" + userid + "/disks", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+
 // For internal use
 
 type simpleAction struct {
