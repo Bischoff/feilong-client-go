@@ -8,6 +8,7 @@ package feilong
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 
@@ -991,6 +992,44 @@ func (c *Client) DeleteGuestNIC(userid string, vdev string, params *DeleteGuestN
 	_, err = c.doRequest("DELETE", "/guests/" + userid + "/nic/" + vdev, body)
 
 	return err
+}
+
+
+// New method, see https://github.com/openmainframeproject/feilong/issues/796
+
+type GetGuestMinidisksInfoMinidisk struct {
+	VDev		string		`json:"vdev"`
+	// TODO: get more info
+}
+
+type GetGuestMinidisksInfoOutput struct {
+	Minidisks	[]GetGuestMinidisksInfoMinidisk `json:"minidisks,omitempty"`
+}
+
+type GetGuestMinidisksInfoResult struct {
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
+	Output		GetGuestMinidisksInfoOutput `json:"output"`
+}
+
+func (c *Client) GetGuestMinidisksInfo(userid string) (*GetGuestMinidisksInfoResult, error) {
+	var result GetGuestMinidisksInfoResult
+
+	body, err := c.doRequest("GET", "/guests/" + userid + "/disks", nil)
+	if err != nil {
+		return nil, err
+	}
+
+fmt.Println(string(body))
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
 }
 
 
