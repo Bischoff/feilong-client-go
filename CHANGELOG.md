@@ -3,6 +3,9 @@
 BUGS:
  * fix guest stats structure name
 
+FEATURES:
+ * add new function to query minidisks
+
 
 ## 0.1.0 - 2023-12-31
 
