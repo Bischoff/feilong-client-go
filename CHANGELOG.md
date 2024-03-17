@@ -1,5 +1,11 @@
 ## 0.1.2 - Unreleased
 
+BUGS:
+ * rename a misnamed snippet
+
+FEATURES:
+ * support new function to query SMAPI
+
 
 ## 0.1.1 - 2024-02-18
 

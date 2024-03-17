@@ -36,12 +36,12 @@ func main() {
 		return
 	}
 
-	fmt.Printf("Total success:       %d\n", result.SMAPI.TotalSuccess)
-	fmt.Printf("Total fail:          %d\n\n", result.SMAPI.TotalFail)
-	fmt.Printf("Last success:        %s\n", result.SMAPI.LastSuccess)
-	fmt.Printf("Last fail:           %s\n\n", result.SMAPI.LastFail)
-	fmt.Printf("Continuous fail:     %d\n", result.SMAPI.ContinuousFail)
-	if result.SMAPI.Healthy {
+	fmt.Printf("Total success:       %d\n", result.Output.TotalSuccess)
+	fmt.Printf("Total fail:          %d\n", result.Output.TotalFail)
+	fmt.Printf("Last success:        %s\n", result.Output.LastSuccess)
+	fmt.Printf("Last fail:           %s\n", result.Output.LastFail)
+	fmt.Printf("Continuous fail:     %d\n", result.Output.ContinuousFail)
+	if result.Output.Healthy {
 		fmt.Printf("Healthy:             yes\n\n")
 	} else {
 		fmt.Printf("Healthy:             no\n\n")
