@@ -14,50 +14,50 @@ The numbers below refer to the section numbers in the [Feilong API documentation
  * 7.5 - [Guests](https://github.com/Bischoff/feilong-client-go/blob/main/guests.go)
    * 7.5.1 - `ListGuests()`
    * 7.5.2 - `CreateGuest()`
-   * 7.5.3 - `AddGuestDisks()`
-   * 7.5.4 - `ConfigureGuestDisks()`
-   * 7.5.5 - `DeleteGuestDisks()`
-   * 7.5.6 - `AttachGuestVolume()`
-   * 7.5.7 - `DetachGuestVolume()`
-   * 7.5.12 - `GetGuestsStats()`
-   * 7.5.13 - `GetGuestsInterfaceStats()`
-   * 7.5.14 - `GetGuestsNICInfo()`
-   * 7.5.15 - `ShowGuestDefinition()`
-   * 7.5.16 - `DeleteGuest()`
-   * 7.5.17 - `GetGuestPowerStateFromHypervisor()`
-   * 7.5.18 - `GetGuestInfo()`
-   * 7.5.19 - `GetGuestUserDirectory()`
-   * 7.5.20 - `GetGuestAdaptersInfo()`
-   * 7.5.21 - `CreateGuestNIC()`
-   * 7.5.22 - `CreateGuestNetworkInterface()`
-   * 7.5.23 - `DeleteGuestNetworkInterface()`
-   * 7.5.24 - `StartGuest()`
-   * 7.5.25 - `StopGuest()`
-   * 7.5.26 - `SoftStopGuest()`
-   * 7.5.27 - `PauseGuest()`
-   * 7.5.28 - `UnpauseGuest()`
-   * 7.5.29 - `RebootGuest()`
-   * 7.5.30 - `ResetGuest()`
-   * 7.5.31 - `GetGuestConsoleOutput()`
-   * 7.5.32 - `LiveMigrateGuest()`
-   * 7.5.33 - `RegisterGuest()`
-   * 7.5.34 - `DeregisterGuest()`
-   * 7.5.35 - `LiveResizeGuestCPUs()`
-   * 7.5.36 - `ResizeGuestCPUs()`
-   * 7.5.37 - `LiveResizeGuestMemory()`
-   * 7.5.38 - `ResizeGuestMemory()`
-   * 7.5.39 - `DeployGuest()`
-   * 7.5.40 - `CaptureGuest()`
-   * 7.5.41 - `GrowGuestRootVolume()`
-   * 7.5.42 - `GetGuestPowerState()`
-   * 7.5.43 - `UpdateGuestNIC()`
-   * 7.5.44 - `DeleteGuestNIC()`
-   * new function - `GetGuestMinidisksInfo()`
+   * 7.5.3 - `GetGuestMinidisksInfo()`
+   * 7.5.4 - `AddGuestDisks()`
+   * 7.5.5 - `ConfigureGuestDisks()`
+   * 7.5.6 - `DeleteGuestDisks()`
+   * 7.5.7 - `AttachGuestVolume()`
+   * 7.5.8 - `DetachGuestVolume()`
+   * 7.5.13 - `GetGuestsStats()`
+   * 7.5.14 - `GetGuestsInterfaceStats()`
+   * 7.5.15 - `GetGuestsNICInfo()`
+   * 7.5.16 - `ShowGuestDefinition()`
+   * 7.5.17 - `DeleteGuest()`
+   * 7.5.18 - `GetGuestPowerStateFromHypervisor()`
+   * 7.5.19 - `GetGuestInfo()`
+   * 7.5.20 - `GetGuestUserDirectory()`
+   * 7.5.21 - `GetGuestAdaptersInfo()`
+   * 7.5.22 - `CreateGuestNIC()`
+   * 7.5.23 - `CreateGuestNetworkInterface()`
+   * 7.5.24 - `DeleteGuestNetworkInterface()`
+   * 7.5.25 - `StartGuest()`
+   * 7.5.26 - `StopGuest()`
+   * 7.5.27 - `SoftStopGuest()`
+   * 7.5.28 - `PauseGuest()`
+   * 7.5.29 - `UnpauseGuest()`
+   * 7.5.30 - `RebootGuest()`
+   * 7.5.31 - `ResetGuest()`
+   * 7.5.32 - `GetGuestConsoleOutput()`
+   * 7.5.33 - `LiveMigrateGuest()`
+   * 7.5.34 - `RegisterGuest()`
+   * 7.5.35 - `DeregisterGuest()`
+   * 7.5.36 - `LiveResizeGuestCPUs()`
+   * 7.5.37 - `ResizeGuestCPUs()`
+   * 7.5.38 - `LiveResizeGuestMemory()`
+   * 7.5.39 - `ResizeGuestMemory()`
+   * 7.5.40 - `DeployGuest()`
+   * 7.5.41 - `CaptureGuest()`
+   * 7.5.42 - `GrowGuestRootVolume()`
+   * 7.5.43 - `GetGuestPowerState()`
+   * 7.5.44 - `UpdateGuestNIC()`
+   * 7.5.45 - `DeleteGuestNIC()`
  * 7.5 - [Volumes](https://github.com/Bischoff/feilong-client-go/blob/main/volumes.go)
-   * 7.5.8 - `RefreshVolumeBootmapInfo()`
-   * 7.5.9 - `GetVolumeConnector()`
-   * 7.5.10 - `GetVolumeFCPUsage()`
-   * 7.5.11 - `SetVolumeFCPUsage()`
+   * 7.5.9 - `RefreshVolumeBootmapInfo()`
+   * 7.5.10 - `GetVolumeConnector()`
+   * 7.5.11 - `GetVolumeFCPUsage()`
+   * 7.5.12 - `SetVolumeFCPUsage()`
  * 7.6 - [Host](https://github.com/Bischoff/feilong-client-go/blob/main/host.go)
    * 7.6.1 - `GetHostGuestList()`
    * 7.6.2 - `GetHostInfo()`
