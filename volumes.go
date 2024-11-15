@@ -7,6 +7,7 @@
 package feilong
 
 import (
+	"strings"
 	"encoding/json"
 )
 
@@ -125,6 +126,52 @@ func (c *Client) SetVolumeFCPUsage(fcpid string, params *SetVolumeFCPUsageParams
 	_, err = c.doRequest("PUT", "/volumes/fcp/" + fcpid, body)
 
 	return err
+}
+
+
+// Undocumented - GetFCPTemplatesDetails()
+
+// TODO: create variants of this method with raw information and/or statistics
+//       see GetHostDiskPoolInfo and GetHostDiskPoolDetails as model
+
+type FCPTemplate struct {
+	Id		string		`json:"id"`
+	Name		string		`json:"name"`
+	Description	string		`json:"description"`
+	IsDefault	bool		`json:"is_default"`
+	SPName		[]string	`json:"sp_name"`
+}
+
+type GetFCPTemplatesDetailsResult struct {
+	FCPTemplates []FCPTemplate `json:"fcp_templates,omitempty"`
+}
+
+func (c *Client) GetFCPTemplatesDetails(templateIdList []string, syncWithZVM bool) (*GetFCPTemplatesDetailsResult, error) {
+	var result GetFCPTemplatesDetailsResult
+
+	req := "/volumes/fcptemplates/detail?"
+	if templateIdList != nil {
+		req += "template_id_list=" + strings.Join(templateIdList, " ") + "&"
+	}
+	req += "raw=false&"
+	req += "statistics=false&"
+	if (syncWithZVM) {
+		req += "sync_with_zvm=true"
+	} else {
+		req += "sync_with_zvm=false"
+	}
+
+	body, err := c.doRequest("GET", req, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
 }
 
 

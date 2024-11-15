@@ -4,4 +4,4 @@ go 1.21
 
 toolchain go1.21.3
 
-require github.com/Bischoff/feilong-client-go v0.1.2
+require github.com/Bischoff/feilong-client-go v0.1.3

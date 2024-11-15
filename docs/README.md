@@ -58,6 +58,7 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.5.10 - `GetVolumeConnector()`
    * 7.5.11 - `GetVolumeFCPUsage()`
    * 7.5.12 - `SetVolumeFCPUsage()`
+   * undocumented - `GetFCPTemplatesDetails()`
  * 7.6 - [Host](https://github.com/Bischoff/feilong-client-go/blob/main/host.go)
    * 7.6.1 - `GetHostGuestList()`
    * 7.6.2 - `GetHostInfo()`
