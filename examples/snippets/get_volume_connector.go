@@ -38,7 +38,6 @@ func main() {
 
 	volumeConnectorParams := feilong.GetVolumeConnectorParams {
 		Reserve: true,
-		FCPTemplateId: "fake_id",
 	}
 	result, err := client.GetVolumeConnector(userid, &volumeConnectorParams)
 	if err != nil {
