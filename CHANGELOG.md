@@ -6,6 +6,7 @@ BUGS:
 FEATURES:
  * add method to get vswitch info
  * add snippets to stop, start and reboot guest
+ * support FCP templates functions
 
 
 ## 0.1.2 - 2024-07-16

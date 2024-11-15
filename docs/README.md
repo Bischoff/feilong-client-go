@@ -78,8 +78,13 @@ The numbers below refer to the section numbers in the [Feilong API documentation
  * 7.9 - [Volumes](https://github.com/Bischoff/feilong-client-go/blob/main/volumes.go)
    * 7.9.1 - `RefreshVolumeBootmapInfo()`
    * 7.9.2 - `GetVolumeConnector()`
-   * 7.9.3 - `GetVolumeFCPUsage()`
-   * 7.9.4 - `SetVolumeFCPUsage()`
+   * 7.9.3 - `CreateFCPTemplate()`
+   * 7.9.4 - `DeleteFCPTemplate()`
+   * 7.9.5 - `GetFCPTemplates()`
+   * 7.9.6 - `EditFCPTemplate()`
+   * 7.9.7 - `GetFCPTemplatesDetails()`
+   * 7.9.8 - `GetVolumeFCPUsage()`
+   * 7.9.9 - `SetVolumeFCPUsage()`
  * 7.10 - [Files](https://github.com/Bischoff/feilong-client-go/blob/main/file.go)
    * 7.10.1 - `ImportFile()`
    * 7.10.2 - `ExportFile()`
