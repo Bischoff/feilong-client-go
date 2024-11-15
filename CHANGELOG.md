@@ -1,4 +1,7 @@
-## 0.1.2 - Unreleased
+## 0.1.3 - unreleased
+
+
+## 0.1.2 - 2024-07-16
 
 BUGS:
  * rename a misnamed snippet
