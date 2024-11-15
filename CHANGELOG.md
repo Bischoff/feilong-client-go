@@ -1,4 +1,4 @@
-## 0.1.3 - unreleased
+## 0.1.3 - 2025-11-28
 
 BUGS:
  * fix AttachGuestVolume() and DetachGestVolume()
@@ -6,6 +6,7 @@ BUGS:
 FEATURES:
  * add method to get vswitch info
  * add snippets to stop, start and reboot guest
+ * support FCP templates functions
 
 
 ## 0.1.2 - 2024-07-16
