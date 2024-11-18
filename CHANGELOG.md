@@ -1,5 +1,8 @@
 ## 0.1.3 - unreleased
 
+FEATURES:
+ * add snippets to stop, start and reboot guest
+
 
 ## 0.1.2 - 2024-07-16
 
