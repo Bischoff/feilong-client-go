@@ -1,5 +1,8 @@
 ## 0.1.3 - unreleased
 
+BUGS:
+ * fix AttachGuestVolume() and DetachGestVolume()
+
 FEATURES:
  * add snippets to stop, start and reboot guest
 

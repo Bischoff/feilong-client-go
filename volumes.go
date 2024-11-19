@@ -112,8 +112,9 @@ func (c *Client) GetVolumeFCPUsage(fcpid string) (*GetVolumeFCPUsageResult, erro
 
 type SetVolumeFCPUsageParams struct {
 	UserId		string		`json:"userid"`
-	Reserved	bool		`json:"reserved"`
+	Reserved	int		`json:"reserved"`
 	Connections	int		`json:"connections"`
+	FCPTemplateId	string		`json:"fcp_template_id"`
 }
 
 func (c *Client) SetVolumeFCPUsage(fcpid string, params *SetVolumeFCPUsageParams) error {

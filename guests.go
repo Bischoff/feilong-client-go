@@ -189,6 +189,7 @@ type AttachGuestVolumeParams struct {
 	Multipath	bool		`json:"multipath"`
 	MountPoint	string		`json:"mount_point,omitempty"`
 	IsRootVolume	bool		`json:"is_root_volume,omitempty"`
+	DoRollback	bool		`json:"do_rollback,omitempty"`
 }
 
 func (c *Client) AttachGuestVolume(params *AttachGuestVolumeParams) error {
@@ -217,6 +218,8 @@ type DetachGuestVolumeParams struct {
 	Multipath	bool		`json:"multipath"`
 	MountPoint	string		`json:"mount_point,omitempty"`
 	IsRootVolume	bool		`json:"is_root_volume,omitempty"`
+	UpdateConnectionsOnly bool	`json:"update_connections_only,omitempty"`
+	DoRollback	bool		`json:"do_rollback,omitempty"`
 }
 
 func (c *Client) DetachGuestVolume(params *DetachGuestVolumeParams) error {
@@ -227,7 +230,7 @@ func (c *Client) DetachGuestVolume(params *DetachGuestVolumeParams) error {
 		return err
 	}
 
-	_, err = c.doRequest("POST", "/guests/volumes", body)
+	_, err = c.doRequest("DELETE", "/guests/volumes", body)
 
 	return err
 }
