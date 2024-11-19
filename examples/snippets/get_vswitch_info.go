@@ -30,25 +30,24 @@ func main() {
 		}
 	}
 
-	if len(os.Args) != 3 {
-		fmt.Println("Please specify image name and upload URL")
+	if len(os.Args) != 2 {
+		fmt.Println("Please specify switch port id")
 		return
 	}
-	name := os.Args[1]
-	url := os.Args[2]
+	port := os.Args[1]
 
-	imageMeta := feilong.CreateImageMeta {
-		OSVersion: "sles15.5",
-	}
-	imageParams := feilong.CreateImageParams {
-		ImageName: name,
-		URL: url,
-		ImageMeta: imageMeta,
-	}
-
-	err := client.CreateImage(&imageParams)
+	getVSwitchInfoParams := feilong.GetVSwitchInfoParams { PortId: port }
+	result, err := client.GetVSwitchInfo(&getVSwitchInfoParams)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
+	}
+
+	for _, nic := range result.Output {
+		fmt.Printf("Userid: %s\n", nic.UserId)
+		fmt.Printf("Interface: %s\n", nic.Interface)
+		fmt.Printf("Switch: %s\n", nic.Switch)
+		fmt.Printf("Port: %s\n", nic.Port)
+		fmt.Printf("Comments: %s\n\n", nic.Comments)
 	}
 }

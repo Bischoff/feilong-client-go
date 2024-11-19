@@ -74,6 +74,7 @@ The numbers below refer to the section numbers in the [Feilong API documentation
    * 7.8.5 - `RevokeUserFromVSwitch()`
    * 7.8.6 - `SetUserVLANIdToVSwitch()`
    * 7.8.7 - `DeleteVSwitch()`
+   * 7.8.8 - `GetVSwitchInfo()`
  * 7.9 - [Volumes](https://github.com/Bischoff/feilong-client-go/blob/main/volumes.go)
    * 7.9.1 - `RefreshVolumeBootmapInfo()`
    * 7.9.2 - `GetVolumeConnector()`
@@ -82,5 +83,3 @@ The numbers below refer to the section numbers in the [Feilong API documentation
  * 7.10 - [Files](https://github.com/Bischoff/feilong-client-go/blob/main/file.go)
    * 7.10.1 - `ImportFile()`
    * 7.10.2 - `ExportFile()`
- * 7.11 - [Switch](https://github.com/Bischoff/feilong-client-go/blob/main/switch.go)
-   * 7.11.1 - `GetSwitchInfo()`

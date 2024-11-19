@@ -4,6 +4,7 @@ BUGS:
  * fix AttachGuestVolume() and DetachGestVolume()
 
 FEATURES:
+ * add method to get vswitch info
  * add snippets to stop, start and reboot guest
 
 
