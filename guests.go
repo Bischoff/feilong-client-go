@@ -522,6 +522,67 @@ func (c *Client) GetGuestInfo(userid string) (*GetGuestInfoResult, error) {
 }
 
 
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-os-info
+
+type GetGuestOSInfoOutput struct {
+	OSDistro	string		`json:"os_distro"`
+	KernelInfo	string		`json:"kernel_info"`
+}
+
+type GetGuestOSInfoResult struct {
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
+	Output		GetGuestOSInfoOutput `json:"output"`
+}
+
+func (c *Client)  GetGuestOSInfo(userid string) (*GetGuestOSInfoResult, error) {
+	var result GetGuestOSInfoResult
+
+	body, err := c.doRequest("GET", "/guests/" + userid + "/os_info", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+
+// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-online-cpu-num
+
+type GetGuestOnlineCPUNumResult struct {
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
+	Output		int		`json:"output"`
+}
+
+func (c *Client) GetGuestOnlineCPUNum(userid string) (*GetGuestOnlineCPUNumResult, error) {
+	var result GetGuestOnlineCPUNumResult
+
+	body, err := c.doRequest("GET", "/guests/" + userid + "/online_cpu_num", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
+
+
 // https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guest-user-direct
 
 type GetGuestUserDirectoryOutput struct {
