@@ -1,3 +1,9 @@
+## 0.1.4 - Unreleased
+
+FEATURES:
+ * add GetGuestOSInfo() and GetGuestOnlineCPUNum()
+
+
 ## 0.1.3 - 2025-11-28
 
 BUGS:
