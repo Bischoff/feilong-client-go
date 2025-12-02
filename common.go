@@ -18,6 +18,7 @@ type GuestDisk struct {
 }
 
 type GuestNetwork struct {
+	Method		string		`json:"method,omitempty"`
 	IPAddress	string		`json:"ip_addr,omitempty"`
 	DNSAddresses	[]string	`json:"dns_addr,omitempty"`
 	GatewayAddress	string		`json:"gateway_addr,omitempty"`
