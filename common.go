@@ -12,7 +12,7 @@ package feilong
 type GuestDisk struct {
 	Size		string		`json:"size"`
 	Format		string		`json:"format,omitempty"`
-	IsBootDisk	bool		`json:"is_boot_disk,omitempty"`
+	IsBootDisk	*bool		`json:"is_boot_disk,omitempty"`
 	VDev		string		`json:"vdev,omitempty"`
 	DiskPool	string		`json:"disk_pool,omitempty"`
 }
