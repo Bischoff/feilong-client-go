@@ -11,7 +11,7 @@ import (
 )
 
 
-// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-guests-list
+// https://feilong.readthedocs.io/en/latest/restapi.html#get-guests-list
 
 type GetHostGuestListResult struct {
 	OverallRC	int		`json:"overallRC"`
@@ -40,7 +40,7 @@ func (c *Client) GetHostGuestList() (*GetHostGuestListResult, error) {
 }
 
 
-// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-host-info
+// https://feilong.readthedocs.io/en/latest/restapi.html#get-host-info
 
 type GetHostInfoCPUInfo struct {
 	CECModel	string		`json:"cec_model"`
@@ -90,7 +90,7 @@ func (c *Client) GetHostInfo() (*GetHostInfoResult, error) {
 }
 
 
-// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-host-disk-pool-info
+// https://feilong.readthedocs.io/en/latest/restapi.html#get-host-disk-pool-info
 
 type GetHostDiskPoolInfoOutput struct {
 	DiskAvailable	int		`json:"disk_available"`
@@ -172,7 +172,7 @@ func (c *Client) GetHostDiskPoolDetails(poolName *string) (*GetHostDiskPoolDetai
 }
 
 
-// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-host-disk-pool-volume-names
+// https://feilong.readthedocs.io/en/latest/restapi.html#get-host-disk-pool-volume-names
 
 type GetHostDiskPoolVolumeNamesOutput struct {
 	DiskPoolVolumes	string		`json:"diskpool_volumes"`
@@ -209,7 +209,7 @@ func (c *Client) GetHostDiskPoolVolumeNames(poolName *string) (*GetHostDiskPoolV
 }
 
 
-// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-host-volume-info
+// https://feilong.readthedocs.io/en/latest/restapi.html#get-host-volume-info
 
 type GetHostVolumeInfoOutput struct {
 	VolumeType	string		`json:"volume_type"`
@@ -242,7 +242,7 @@ func (c *Client) GetHostVolumeInfo(volumeName string) (*GetHostVolumeInfoResult,
 }
 
 
-// https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html#get-host-ssi-cluster-info
+// https://feilong.readthedocs.io/en/latest/restapi.html#get-host-ssi-cluster-info
 
 type GetHostSSIClusterInfoResult struct {
 	OverallRC	int		`json:"overallRC"`

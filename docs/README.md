@@ -3,7 +3,7 @@
 
 ## Implemented Functions
 
-The numbers below refer to the section numbers in the [Feilong API documentation](https://cloudlib4zvm.readthedocs.io/en/latest/restapi.html).
+The numbers below refer to the section numbers in the [Feilong API documentation](https://feilong.readthedocs.io/en/latest/restapi.html).
 
  * 7.2 - [Version](https://github.com/Bischoff/feilong-client-go/blob/main/version.go)
    * 7.2.1 - `GetVersion()`
