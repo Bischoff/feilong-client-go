@@ -13,6 +13,8 @@ import (
 	"github.com/Bischoff/feilong-client-go"
 )
 
+const lineFormat = "%-20s %s\n"
+
 func main() {
 	connector := os.Getenv("ZVM_CONNECTOR")
 	if connector == "" {
@@ -41,5 +43,8 @@ func main() {
 		fmt.Println(err.Error())
 		return
 	}
-	fmt.Printf("Volumes: %s\n", result.Output.DiskPoolVolumes)
+	fmt.Printf(lineFormat, "Pool", "Volumes")
+	for pool, vol := range result.Output {
+		fmt.Printf(lineFormat, pool, vol.DiskPoolVolumes)
+	}
 }

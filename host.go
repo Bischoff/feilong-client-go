@@ -174,7 +174,7 @@ func (c *Client) GetHostDiskPoolDetails(poolName *string) (*GetHostDiskPoolDetai
 
 // https://feilong.readthedocs.io/en/latest/restapi.html#get-host-disk-pool-volume-names
 
-type GetHostDiskPoolVolumeNamesOutput struct {
+type DiskPoolVolumeNames struct {
 	DiskPoolVolumes	string		`json:"diskpool_volumes"`
 }
 
@@ -184,7 +184,7 @@ type GetHostDiskPoolVolumeNamesResult struct {
 	Reason		int		`json:"rs"`
 	ErrorMsg	string		`json:"errmsg"`
 	ModuleId	int		`json:"modID"`
-	Output		GetHostDiskPoolVolumeNamesOutput `json:"output"`
+	Output		map[string]DiskPoolVolumeNames `json:"output"`
 }
 
 func (c *Client) GetHostDiskPoolVolumeNames(poolName *string) (*GetHostDiskPoolVolumeNamesResult, error) {
