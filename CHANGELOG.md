@@ -3,6 +3,9 @@
 BUGS:
  * Feilong documentation has moved
 
+BREAKING CHANGES:
+ * rename "md5sum" parameter to "checksum"
+
 
 ## 0.1.5 - 2026-01-09
 

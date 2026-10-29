@@ -16,7 +16,7 @@ import (
 type ListImagesImage struct {
 	ImageName		string		`json:"imagename"`
 	ImageOSDistro		string		`json:"imageosdistro"`
-	MD5Sum			string		`json:"md5sum"`
+	Checksum		string		`json:"checksum"`
 	DiskSizeUnits		string		`json:"disk_size_units"`
 	ImageSizeInBytes	string		`json:"image_size_in_bytes"`
 	Type			string		`json:"type"`
@@ -58,7 +58,7 @@ func (c *Client) ListImages(imageName *string) (*ListImagesResult, error) {
 
 type CreateImageMeta struct {
 	OSVersion	string		`json:"os_version"`
-	MD5Sum		string		`json:"md5sum,omitempty"`
+	Checksum	string		`json:"checksum,omitempty"`
 	DiskType	string		`json:"disk_type,omitempty"`
 }
 
@@ -94,7 +94,7 @@ type ExportImageOutput struct {
 	ImageName	string		`json:"image_name"`
 	ImagePath	string		`json:"image_path"`
 	OSVersion	string		`json:"os_version"`
-	MD5Sum		string		`json:"md5sum"`
+	Checksum	string		`json:"checksum"`
 }
 
 type ExportImageResult struct {

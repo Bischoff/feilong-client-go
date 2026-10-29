@@ -15,7 +15,7 @@ import (
 type ImportFileOutput struct {
 	DestURL		string		`json:"dest_url"`
 	filesizeInBytes	int		`json:"filesize_in_bytes"`
-	MD5Sum		string		`json:"md5sum"`
+	Checksum	string		`json:"checksum"`
 }
 
 type ImportFileResult struct {
