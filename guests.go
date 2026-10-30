@@ -61,6 +61,7 @@ type CreateGuestParams struct {
 	LoadDev		CreateDiskLoadDev `json:"loaddev,omitempty"`
 	Account		string		`json:"account,omitempty"`
 	CommentList	[]string	`json:"comment_list,omitempty"`
+	LogonBy		string		`json:"logon_by,omitempty"`
 }
 
 type CreateGuestResult struct {
@@ -538,7 +539,7 @@ type GetGuestOSInfoResult struct {
 	Output		GetGuestOSInfoOutput `json:"output"`
 }
 
-func (c *Client)  GetGuestOSInfo(userid string) (*GetGuestOSInfoResult, error) {
+func (c *Client) GetGuestOSInfo(userid string) (*GetGuestOSInfoResult, error) {
 	var result GetGuestOSInfoResult
 
 	body, err := c.doRequest("GET", "/guests/" + userid + "/os_info", nil)

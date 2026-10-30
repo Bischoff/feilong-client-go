@@ -7,6 +7,9 @@ BREAKING CHANGES:
  * rename "md5sum" parameter to "checksum"
  * GetHostDiskPoolVolumeNames() outputs several pools
 
+FEATURES:
+ * new parameter LogonBy for CreateGuest()
+
 
 ## 0.1.5 - 2026-01-09
 
