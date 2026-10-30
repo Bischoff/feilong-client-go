@@ -9,6 +9,7 @@ BREAKING CHANGES:
 
 FEATURES:
  * new parameter LogonBy for CreateGuest()
+ * add GetHostPCIFunctionList()
 
 
 ## 0.1.5 - 2026-01-09

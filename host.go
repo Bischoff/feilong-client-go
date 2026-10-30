@@ -268,3 +268,38 @@ func (c *Client) GetHostSSIClusterInfo() (*GetHostSSIClusterInfoResult, error) {
 
 	return &result, nil
 }
+
+// https://feilong.readthedocs.io/en/latest/restapi.html#get-host-pci-function-list
+
+type GetHostPCIFunctionListOutput struct {
+	PCIF 		string		`json:"pcif"`
+	Status		string		`json:"status"`
+	UserId		string		`json:"userid"`
+	State		string		`json:"state"`
+	Type		string		`json:"type"`
+}
+
+type GetHostPCIFunctionListResult struct {
+	OverallRC	int		`json:"overallRC"`
+	ReturnCode	int		`json:"rc"`
+	Reason		int		`json:"rs"`
+	ErrorMsg	string		`json:"errmsg"`
+	ModuleId	int		`json:"modID"`
+	Output		GetHostPCIFunctionListOutput `json:"output"`
+}
+
+func (c *Client) GetHostPCIFunctionList() (*GetHostPCIFunctionListResult, error) {
+	var result GetHostPCIFunctionListResult
+
+	body, err := c.doRequest("GET", "/host/pcif", nil)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return &result, nil
+}
