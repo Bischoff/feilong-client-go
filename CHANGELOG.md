@@ -2,6 +2,7 @@
 
 BUGS:
  * Feilong documentation has moved
+ * fix spelling of ZCCUserId
 
 BREAKING CHANGES:
  * rename "md5sum" parameter to "checksum"

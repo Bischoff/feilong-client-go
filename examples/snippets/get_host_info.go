@@ -37,7 +37,7 @@ func main() {
 	}
 
 	fmt.Printf("ZVM Host:            %s\n", result.Output.ZVMHost)
-	fmt.Printf("ZCC User ID:         %s\n", result.Output.ZCCUserID)
+	fmt.Printf("ZCC User Id:         %s\n", result.Output.ZCCUserId)
 	fmt.Printf("IPL time:            %s\n\n", result.Output.IPLTime)
 	fmt.Printf("Hypervisor hostname: %s\n", result.Output.HypervisorHostname)
 	fmt.Printf("Hypervisor type:     %s\n", result.Output.HypervisorType)

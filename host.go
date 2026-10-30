@@ -49,7 +49,7 @@ type GetHostInfoCPUInfo struct {
 
 type GetHostInfoOutput struct {
 	ZVMHost		string		`json:"zvm_host"`
-	ZCCUserID	string		`json:"zcc_userid"`
+	ZCCUserId	string		`json:"zcc_userid"`
 	IPLTime		string		`json:"ipl_time"`
 	HypervisorHostname string	`json:"hypervisor_hostname"`
 	HypervisorType	string		`json:"hypervisor_type"`
