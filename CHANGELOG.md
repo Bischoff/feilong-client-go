@@ -2,9 +2,10 @@
 
 BUGS:
  * Feilong documentation has moved
- * fix spelling of ZCCUserId
+ * parameter ZCCUserId instead of ZCCUserID
+ * parameter Comments instead of CommentsList
 
-BREAKING CHANGES:
+BREAKING FEILONG API CHANGES:
  * rename "md5sum" parameter to "checksum"
  * GetHostDiskPoolVolumeNames() outputs several pools
 

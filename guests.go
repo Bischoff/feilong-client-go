@@ -60,7 +60,7 @@ type CreateGuestParams struct {
 	DedicateVDevs	[]string	`json:"dedicate_vdevs,omitempty"`
 	LoadDev		CreateDiskLoadDev `json:"loaddev,omitempty"`
 	Account		string		`json:"account,omitempty"`
-	CommentList	[]string	`json:"comment_list,omitempty"`
+	Comments	[]string	`json:"comments,omitempty"`
 	LogonBy		string		`json:"logon_by,omitempty"`
 }
 
