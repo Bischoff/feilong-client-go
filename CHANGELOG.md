@@ -1,4 +1,4 @@
-## 0.1.6 - (unreleased)
+## 0.1.6 - 2026-11-01
 
 BUGS:
  * Feilong documentation has moved
@@ -10,7 +10,7 @@ BREAKING FEILONG API CHANGES:
  * GetHostDiskPoolVolumeNames() outputs several pools
 
 FEATURES:
- * new parameter LogonBy for CreateGuest()
+ * new parameters for CreateGuest()
  * add GetHostPCIFunctionList()
 
 

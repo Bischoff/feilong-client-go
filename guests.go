@@ -61,6 +61,10 @@ type CreateGuestParams struct {
 	LoadDev		CreateDiskLoadDev `json:"loaddev,omitempty"`
 	Account		string		`json:"account,omitempty"`
 	Comments	[]string	`json:"comments,omitempty"`
+	CSchedule	string		`json:"cschedule,omitempty"`
+	CShare		string		`json:"cshare,omitempty"`
+	RDomain		string		`json:"rdomain,omitempty"`
+	PCIF		string		`json:"pcif,omitempty"`
 	LogonBy		string		`json:"logon_by,omitempty"`
 }
 
